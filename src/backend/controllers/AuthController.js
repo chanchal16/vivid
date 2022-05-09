@@ -15,16 +15,16 @@ const sign = require("jwt-encode");
  * */
 
 export const signupHandler = function (schema, request) {
-  const { username, password, ...rest } = JSON.parse(request.requestBody);
+  const { email, password, ...rest } = JSON.parse(request.requestBody);
   try {
-    // check if username already exists
-    const foundUser = schema.users.findBy({ username: username });
+    // check if email already exists
+    const foundUser = schema.users.findBy({ email: email });
     if (foundUser) {
       return new Response(
         422,
         {},
         {
-          errors: ["Unprocessable Entity. Username Already Exists."],
+          errors: ["Unprocessable Entity. email Already Exists."],
         }
       );
     }
@@ -34,7 +34,7 @@ export const signupHandler = function (schema, request) {
       _id,
       createdAt: formatDate(),
       updatedAt: formatDate(),
-      username,
+      email,
       password,
       ...rest,
       followers: [],
@@ -43,7 +43,7 @@ export const signupHandler = function (schema, request) {
     };
     const createdUser = schema.users.create(newUser);
     const encodedToken = sign(
-      { _id, username },
+      { _id, email },
       process.env.REACT_APP_JWT_SECRET
     );
     return new Response(201, {}, { createdUser, encodedToken });
@@ -61,27 +61,27 @@ export const signupHandler = function (schema, request) {
 /**
  * This handler handles user login.
  * send POST Request at /api/auth/login
- * body contains {username, password}
+ * body contains {email, password}
  * */
 
 export const loginHandler = function (schema, request) {
-  const { username, password } = JSON.parse(request.requestBody);
+  const { email, password } = JSON.parse(request.requestBody);
   try {
-    const foundUser = schema.users.findBy({ username: username });
+    const foundUser = schema.users.findBy({ email: email });
     if (!foundUser) {
       return new Response(
         404,
         {},
         {
           errors: [
-            "The username you entered is not Registered. Not Found error",
+            "The email you entered is not Registered. Not Found error",
           ],
         }
       );
     }
     if (password === foundUser.password) {
       const encodedToken = sign(
-        { _id: foundUser._id, username },
+        { _id: foundUser._id, email },
         process.env.REACT_APP_JWT_SECRET
       );
       return new Response(200, {}, { foundUser, encodedToken });
