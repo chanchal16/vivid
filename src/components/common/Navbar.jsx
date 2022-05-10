@@ -2,7 +2,7 @@ import React from 'react'
 import {NavLink} from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { MdOutlineExplore,  MdAddCircleOutline, MdOutlineBookmarkBorder, MdPersonOutline } from 'react-icons/md';
-import {GiAzulFlake} from "react-icons/gi";
+import {GiStaryu} from "react-icons/gi";
 import {HiOutlineHome} from "react-icons/hi";
 
 export const Navbar = () => {
@@ -13,7 +13,7 @@ export const Navbar = () => {
        {/* hide on mobile */}
         <NavLink to="/" className="app-navbar-logo hidden md:block">
             <span className="flex items-center text-primary hover:text-pista">
-                <GiAzulFlake className="mr-1 " />
+                <GiStaryu className="mr-1 " /> 
                 Vivid
             </span>
         </NavLink>
@@ -50,7 +50,6 @@ export const Navbar = () => {
                         }
                     </NavLink>
                 </li>
-
             </ul>
         </div> 
     </div>
