@@ -1,12 +1,10 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
 import { MdOutlineExplore,  MdAddCircleOutline, MdOutlineBookmarkBorder, MdPersonOutline } from 'react-icons/md';
 import {GiStaryu} from "react-icons/gi";
 import {HiOutlineHome} from "react-icons/hi";
 
 export const Navbar = () => {
-    const {authState} = useAuth();
     
   return (
     <div className="app-container flex items-center md:justify-between p-2.5 bg-white text-lg">
@@ -42,12 +40,7 @@ export const Navbar = () => {
 
                 <li>
                     <NavLink end to={"/profile/"} className="flex items-center profile-pic" aria-label="User Profile">
-                        {
-                            authState?.userAvatar ? 
-                            <img src={authState?.userAvatar} alt="User" />
-                            :
-                            <MdPersonOutline size='1.5rem' />
-                        }
+                        <MdPersonOutline size='1.5rem' />
                     </NavLink>
                 </li>
             </ul>
