@@ -1,24 +1,35 @@
 import React,{useState} from 'react'
 import {Link,useNavigate} from 'react-router-dom'
-import { useAuth } from '../contexts/AuthContext';
 import { SignupUser } from '../services/auth-services';
+import { useDispatch } from 'react-redux';
+import { FAILURE, SIGNUP } from 'features/authentication/authSlice';
 
 export const SignUp = () => {
     const navigate= useNavigate()
-    const {authDispatch} = useAuth()
     const [signUpForm,setSignUpForm] = useState({name:'',email:'',password:''})
+    const authDispatch = useDispatch() 
 
     // handle submit
-    const handleSubmit =async (e)=>{
+    const handleSubmit = async (e)=>{
         e.preventDefault();
-        await SignupUser(signUpForm.name,signUpForm.email,signUpForm.password,authDispatch)
+        try{
+            const {data} = await SignupUser(signUpForm.name,signUpForm.email,signUpForm.password)
+            const user = {
+                token:data.encodedToken,
+                user:data.createdUser
+            }
+            localStorage.setItem('user',JSON.stringify(user));
+            authDispatch(SIGNUP(user))
+        }catch(err){
+            console.error(err)
+            authDispatch(FAILURE(err))
+        }      
     }
     // handle sign up
     const handleSignUp = ()=>{
         setSignUpForm((form)=>({
             ...form,
-        }))
-        navigate('/login')
+        }))       
     }
 
   return (

@@ -1,6 +1,7 @@
+import { FAILURE, LOGIN } from 'features/authentication/authSlice';
 import React,{useState} from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom'
-import { useAuth } from '../contexts/AuthContext';
 import { LoginUser } from '../services/auth-services';
 
 export const Login = () => {
@@ -8,11 +9,24 @@ export const Login = () => {
         email: "",
         password: "",
     });
-    const {authDispatch} = useAuth()
+    const authState = useSelector(state => state.auth);
+    const authDispatch = useDispatch()        
 
-    const handleSubmit =async (e)=>{
+    const handleSubmit = async (e)=>{
         e.preventDefault()
-        await LoginUser(loginForm.email,loginForm.password,authDispatch)
+        try{
+           const {data} = await LoginUser(loginForm.email,loginForm.password)
+            const user = {
+                token:data.encodedToken,
+                user:data.foundUser
+            }
+            localStorage.setItem('user',JSON.stringify(user));
+            authDispatch(LOGIN(user))
+        }
+        catch(err){
+            console.error(err)
+            authDispatch(FAILURE(err))
+        }       
     }
     // handle guest login
     const HandleLogin=() =>{
