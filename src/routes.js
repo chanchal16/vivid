@@ -1,4 +1,4 @@
-import {Login,SignUp} from './pages';
+import {Feed, Login,SignUp} from './pages';
 
 const ROUTES = [
     {
@@ -9,5 +9,9 @@ const ROUTES = [
         path:"/signup",
         element:<SignUp/>
     },
+    {
+        path:'/',
+        element:<Feed/>
+    }
 ]
 export {ROUTES}
