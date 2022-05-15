@@ -7,7 +7,8 @@ import {HiOutlineHome} from "react-icons/hi";
 export const Navbar = () => {
     
   return (
-    <div className="app-container flex items-center md:justify-between p-2.5 bg-white text-lg">
+    <nav className='bg-white'>
+    <div className="app-container flex items-center md:justify-between p-2.5  text-lg">
        {/* hide on mobile */}
         <NavLink to="/" className="app-navbar-logo hidden md:block">
             <span className="flex items-center text-primary hover:text-pista">
@@ -46,5 +47,6 @@ export const Navbar = () => {
             </ul>
         </div> 
     </div>
+    </nav>
   )
 }
