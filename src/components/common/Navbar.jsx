@@ -44,7 +44,7 @@ export const Navbar = () => {
                 </li>
 
                 <li>
-                    { !user.user ? (
+                    { user.user ? (
                     <NavLink end to={"/profile"} className="flex items-center profile-pic" aria-label="User Profile">
                         <MdPersonOutline size='1.5rem' />
                     </NavLink>) : (
