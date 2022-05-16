@@ -86,7 +86,7 @@ export const createPostHandler = function (schema, request) {
         likedBy: [],
         dislikedBy: [],
       },
-      username: user.username,
+      username: user.name,
       createdAt: formatDate(),
       updatedAt: formatDate(),
     };

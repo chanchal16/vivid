@@ -1,3 +1,4 @@
+import { PostModal } from "features/posts/PostModal";
 import { useRoutes } from "react-router-dom";
 import { Navbar } from "./components/common/Navbar";
 import { ROUTES } from "./routes";
@@ -7,8 +8,9 @@ function App() {
   return (
     <div className='App'>
       <Navbar/>
-      <main>
+      <main className='app-container'>
       {routeElement}
+       <PostModal/>
       </main>
     </div>
   );

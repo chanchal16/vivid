@@ -1,13 +1,18 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom';
+import {NavLink,Link,useNavigate} from 'react-router-dom';
 import { MdOutlineExplore,  MdAddCircleOutline, MdOutlineBookmarkBorder, MdPersonOutline } from 'react-icons/md';
 import {GiStaryu} from "react-icons/gi";
 import {HiOutlineHome} from "react-icons/hi";
+import { useSelector } from 'react-redux';
 
 export const Navbar = () => {
+    const authState = useSelector(state => state.auth);
+    let{user} = authState;
+    const navigate = useNavigate()
     
   return (
-    <div className="app-container flex items-center md:justify-between p-2.5 bg-white text-lg">
+    <nav className='bg-white'>
+    <div className="app-container flex items-center md:justify-between p-2.5  text-lg">
        {/* hide on mobile */}
         <NavLink to="/" className="app-navbar-logo hidden md:block">
             <span className="flex items-center text-primary hover:text-pista">
@@ -39,12 +44,20 @@ export const Navbar = () => {
                 </li>
 
                 <li>
-                    <NavLink end to={"/profile/"} className="flex items-center profile-pic" aria-label="User Profile">
+                    { user?.user ? (
+                    <NavLink end to={"/profile"} className="flex items-center profile-pic" aria-label="User Profile">
                         <MdPersonOutline size='1.5rem' />
-                    </NavLink>
+                    </NavLink>) : (
+                        
+                        <button onClick={()=>navigate('/login')}
+                        className="bg-primary px-1.5 py-0.5 text-base rounded hover:bg-primary-dark">
+                            Login
+                        </button>
+                    )}
                 </li>
             </ul>
         </div> 
     </div>
+    </nav>
   )
 }

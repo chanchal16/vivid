@@ -25,11 +25,11 @@ main{
 .app-logo{
     font-family: 'Oleo Script Swash Caps', cursive;
 }
-/* .app-container{
+.app-container{
     width: 95%;
     max-width: 1024px;
     margin: auto;
-} */
+}
 ul li a{
     padding: 0.25rem;
         border-radius: 50%;
@@ -41,4 +41,24 @@ ul li a:hover{
 ul li a.active{
     color: #fdba74;
     background-color: #ffedd5;
+}
+/* inputs */
+input, textarea{
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+}
+input:focus, textarea:focus, select:focus{
+    outline: 1px solid;
+}
+/* post */
+.addpost{
+    position: absolute;
+    border: 1px solid #ffedd5;
+    border-radius: 8px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    padding: 1rem;
 }

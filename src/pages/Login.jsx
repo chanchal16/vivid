@@ -1,7 +1,7 @@
 import { FAILURE, LOGIN } from 'features/authentication/authSlice';
 import React,{useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import {Link} from 'react-router-dom'
+import {Link,useNavigate} from 'react-router-dom'
 import { LoginUser } from '../services/auth-services';
 
 export const Login = () => {
@@ -11,6 +11,7 @@ export const Login = () => {
     });
     const authState = useSelector(state => state.auth);
     const authDispatch = useDispatch()        
+    const navigate = useNavigate()
 
     const handleSubmit = async (e)=>{
         e.preventDefault()
@@ -35,6 +36,7 @@ export const Login = () => {
             email: "testing@test.com",
             password: "test123",
         }));
+        navigate('/')
     }
   return (
     <div className="container px-1">
