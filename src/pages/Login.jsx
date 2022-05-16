@@ -1,7 +1,7 @@
 import { FAILURE, LOGIN } from 'features/authentication/authSlice';
 import React,{useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import {Link,useNavigate} from 'react-router-dom'
+import {Link,useNavigate,useLocation,Navigate} from 'react-router-dom'
 import { LoginUser } from '../services/auth-services';
 
 export const Login = () => {
@@ -11,7 +11,9 @@ export const Login = () => {
     });
     const authState = useSelector(state => state.auth);
     const authDispatch = useDispatch()        
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
 
     const handleSubmit = async (e)=>{
         e.preventDefault()
@@ -23,6 +25,7 @@ export const Login = () => {
             }
             localStorage.setItem('user',JSON.stringify(user));
             authDispatch(LOGIN(user))
+            // navigate('/')
         }
         catch(err){
             console.error(err)
@@ -35,8 +38,10 @@ export const Login = () => {
             ...form,
             email: "testing@test.com",
             password: "test123",
-        }));
-        navigate('/')
+        }));       
+    }
+    if (authState.user?.user) {
+        return <Navigate to={from || "/"} replace />;
     }
   return (
     <div className="container px-1">
