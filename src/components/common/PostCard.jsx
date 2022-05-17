@@ -1,13 +1,39 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
-import {FiThumbsUp,FiTrash} from 'react-icons/fi';
+import { useDispatch,useSelector } from 'react-redux';
+import {FiTrash} from 'react-icons/fi';
 import {FaRegComment} from 'react-icons/fa'
-import { BiBookmark } from "react-icons/bi";
-import { deletePost } from 'features/posts/postSlice';
+import {RiThumbUpLine,RiThumbUpFill,RiBookmarkLine,RiBookmarkFill} from 'react-icons/ri'
+import { addToBookmarks, deletePost, likePost, removeFromBookmarks, unLikePost } from 'features/posts/postSlice';
+import { checkIfExists, checkLikedByUser } from 'utils/check-if-exists';
 
 export const PostCard = ({post}) => {
+    const authState = useSelector(state => state.auth);
+    let{user} = authState;
+    const postState = useSelector(state => state.post)
+    const {bookmarkList} = postState
     const dispatch = useDispatch() 
+    // check if post is liked by user
+    const isLikedByUser = checkLikedByUser(user?.user,post?.likes)
+    // check if post is bookmarked by user
+    const isBookmarked = checkIfExists(bookmarkList,post._id)
 
+    // post like handler
+    const likeHandler = (postId)=>{
+        if(!isLikedByUser){
+            dispatch(likePost({token:user?.token,postId}))
+        }else{
+            dispatch(unLikePost({token:user?.token,postId}))
+        }       
+    }
+
+    // bookmarks handler
+    const bookmarkHandler = ()=>{
+        if(!isBookmarked){
+            dispatch(addToBookmarks({token:user?.token, postId:post._id}))
+        }else{
+            dispatch(removeFromBookmarks({token:user?.token, postId:post._id}))
+        }
+    }
   return (
     <article className='bg-white dark:bg-gray-800 rounded border-1 mx-2 md:mx-0 m-5'>
         <div className="flex items-center px-4 py-2">
@@ -28,11 +54,11 @@ export const PostCard = ({post}) => {
         {post?.img && <img className="w-full" src={post.img} alt="" />}
         <section className="flex p-4 justify-between">
             <div className="flex gap-x-6">
-                <button
-                    className="flex items-center rounded-full text-2xl hover:text-primary"
+                <button onClick={()=>likeHandler(post._id)}
+                    className="flex items-center rounded-full text-2xl text-primary"
                     title="like">
-                    <FiThumbsUp /> 
-                    <span className="ml-1 text-lg">{ post.likes.likeCount}</span>
+                    { isLikedByUser ? <RiThumbUpFill/> :<RiThumbUpLine /> }
+                    <span className="ml-1 text-lg">{ post?.likes?.likeCount > 0 && post.likes.likeCount }</span>
                 </button>
                 <button
                     className="p-2 mr-1 rounded-full text-2xl hover:text-primary"
@@ -41,17 +67,16 @@ export const PostCard = ({post}) => {
                 </button>
             </div>
             <div className="flex gap-x-2">
-                <button
-                className="p-2 mr-1 rounded-full text-2xl hover:text-primary"
+                <button onClick={bookmarkHandler}
+                className="p-2 mr-1 rounded-full text-2xl text-primary"
                 title="save">
-                    <BiBookmark />
+                    {isBookmarked ? <RiBookmarkFill/> : <RiBookmarkLine/>}
                 </button>
                 <button className="p-2 mr-1 rounded-full text-2xl hover:text-primary"
                 title="delete" onClick={()=>dispatch(deletePost(post._id))}>
                     <FiTrash/>
                 </button>
-            </div>
-            
+            </div>           
         </section>
     </article>
   )
