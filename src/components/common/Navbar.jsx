@@ -8,6 +8,8 @@ import { useSelector } from 'react-redux';
 export const Navbar = () => {
     const authState = useSelector(state => state.auth);
     let{user} = authState;
+    const postState = useSelector(state => state.post)
+    const {bookmarkList} = postState
     const navigate = useNavigate()
     
   return (
@@ -40,6 +42,7 @@ export const Navbar = () => {
                 <li>
                     <NavLink end to="/bookmarks" className="flex items-center relative" aria-label="Notifications">
                         <MdOutlineBookmarkBorder size='1.5rem' />
+                        {bookmarkList?.length>0? <div className='absolute rounded-full p-1 left-4 bottom-5 bg-primary'></div> : null}
                     </NavLink>
                 </li>
 
