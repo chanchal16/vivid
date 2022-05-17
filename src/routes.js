@@ -1,5 +1,5 @@
 import { RequireAuth } from 'components/common/RequireAuth';
-import {Feed, Login,SignUp} from './pages';
+import {Bookmarks, Feed, Login,SignUp} from './pages';
 
 const ROUTES = [
     {
@@ -17,7 +17,12 @@ const ROUTES = [
     {
         path:'/',
         element:<RequireAuth/>,
-        children:[]
+        children:[
+            {
+                path:'bookmarks',
+                element:<Bookmarks/>
+            }
+        ]
     }
 ]
 export {ROUTES}
