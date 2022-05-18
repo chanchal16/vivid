@@ -4,9 +4,11 @@ import axios from 'axios';
 const initialState = {
   allPosts:[],
   userPosts:[],
+  bookmarkList:[],
   status: 'Idle',
   isModalOpen:false,
-  selectedPost:null
+  selectedPost:null,
+  isLiked:false
 }
 // get all posts
 export const getPosts = createAsyncThunk("posts/getPosts", async () => {
@@ -41,7 +43,60 @@ export const deletePost = createAsyncThunk(
     }
   }
 );
-
+// like a post
+export const likePost = createAsyncThunk("posts/likePost",async({token,postId})=>{
+  try{
+    const {data} = await axios.post(`/api/posts/like/${postId}`,{},
+    {headers:{authorization:token}}
+    );
+    return data.posts;
+  }catch(err){    
+    console.error(err)
+  }
+})
+// unlike post
+export const unLikePost = createAsyncThunk(
+  "posts/unLikePost",
+  async ({token,postId }) => {
+    try {
+      const {data} = await axios.post(`/api/posts/dislike/${postId}`,{},
+      {headers:{authorization:token}}
+      );
+      return data.posts;
+    } catch (error) {      
+      console.error(error)
+    }
+});
+// bookmark a post
+export const addToBookmarks = createAsyncThunk("posts/addToBookmarks",async({token,postId})=>{
+  try{
+    const {data} = await axios.post(`/api/users/bookmark/${postId}`,{},
+    {headers:{authorization:token}});
+    return data.bookmarks
+  }catch(err){
+    console.error(err)
+  }
+})
+// remove from bookmark
+export const removeFromBookmarks = createAsyncThunk("posts/removeFromBookmarks",async({token,postId})=>{
+  try{
+    const {data} = await axios.post(`/api/users/remove-bookmark/${postId}`,{},
+    {headers:{authorization:token}});
+    return data.bookmarks
+  }catch(err){
+    console.error(err)
+  }
+})
+// get bookmarks
+export const getBookmarks = createAsyncThunk("posts/getBookmarks",async({token})=>{
+  try{
+    const {data} = await axios.get(`/api/users/bookmark`,
+    {headers:{authorization:token}});
+    return data.bookmarks
+  }catch(err){   
+    console.error(err)
+  }
+})
 
 export const postSlice = createSlice({
     name: 'posts',
@@ -85,6 +140,55 @@ export const postSlice = createSlice({
 				state.allPosts = state.allPosts.filter(post=> post._id !== action.meta.arg)
 				state.userPosts = state.userPosts.filter(post=>post._id !== action.payload)
 			})
+      // like post
+      .addCase(likePost.fulfilled,(state,action)=>{
+        
+        state.allPosts = action.payload;
+      })
+      .addCase(likePost.rejected,(state,action)=>{
+        
+        console.log(action.error.message)
+      })
+      // unlike post
+      .addCase(unLikePost.fulfilled,(state,action)=>{
+        state.allPosts = action.payload
+      })
+      .addCase(unLikePost.rejected,(state,action)=>{
+        console.log(action.error.message)
+      })
+      // get bookmarks
+      .addCase(getBookmarks.pending,(state)=>{
+        state.status = 'Loading'
+      })
+      .addCase(getBookmarks.fulfilled,(state,action)=>{
+        state.status = 'Fulfilled';
+        state.bookmarkList = action.payload
+      })
+      .addCase(getBookmarks.rejected,(state)=>{
+        state.status = 'Rejected';
+      })
+      // add to bookmark
+      .addCase(addToBookmarks.pending,(state)=>{
+        state.status = 'Loading';
+      })
+      .addCase(addToBookmarks.fulfilled,(state,action)=>{
+        state.status = 'Fulfilled';
+        state.bookmarkList = action.payload
+      })
+      .addCase(addToBookmarks.rejected,(state)=>{
+        state.status = 'Rejected';
+      })
+      // remove from bookmark
+      .addCase(removeFromBookmarks.pending,(state)=>{
+        state.status = 'Loading';
+      })
+      .addCase(removeFromBookmarks.fulfilled,(state,action)=>{
+        state.status = 'Fulfilled';
+        state.bookmarkList = action.payload
+      })
+      .addCase(removeFromBookmarks.rejected,(state)=>{
+        state.status = 'Rejected';
+      })
     }
   })
   

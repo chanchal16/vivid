@@ -6,6 +6,7 @@ import { PostCard } from '../components/common/PostCard';
 export const Feed = () => {
     const postState = useSelector(state => state.post);
     const dispatch = useDispatch() 
+    console.log('posts',postState?.allPosts)
     // sort by recently added
     const sortedPosts = postState?.allPosts?.slice().reverse()
 
@@ -32,7 +33,7 @@ export const Feed = () => {
             </div>
             {
                 sortedPosts?.map(post=>(
-                    <PostCard post={post} key={post._id}/>
+                    <PostCard post={post} key={post?._id}/>
                 ))
             }
         </div>

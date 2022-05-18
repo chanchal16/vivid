@@ -1,3 +1,4 @@
 export {Login} from './Login';
 export {SignUp} from './SignUp';
-export {Feed} from './Feed'
+export {Feed} from './Feed';
+export {Bookmarks} from './Bookmarks'
