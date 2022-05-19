@@ -41,6 +41,21 @@ export const posts = [
   {
     _id: uuid(),
     content:
+      " It always seems impossible until it's done. - Nelson Mandela",
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    name: "Tester",
+    username:'tester',
+    avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591170323/samples/people/boy-snow-hoodie.jpg',
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    content:
       "Being alone is peaceful!",
     img:'https://i.picsum.photos/id/1011/5472/3648.jpg?hmac=Koo9845x2akkVzVFX3xxAc9BCkeGYA9VRVfLE4f0Zzk',
     likes: {
@@ -51,6 +66,21 @@ export const posts = [
     username: "chanchal_16",
     name:'Chanchal Rajput',
     avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591779540/uzo2kczlerzdc8t9abin.jpg',
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    content:
+      " Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.",
+    likes: {
+      likeCount: 4,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    name: "Tester",
+    username:'tester',
+    avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591170323/samples/people/boy-snow-hoodie.jpg',
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
@@ -67,6 +97,21 @@ export const posts = [
     username: "adarshbalika",
     name:'Adarsh Balika',
     avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591170324/samples/people/bicycle.jpg',
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    content:
+      " Manifesting a good day, week and life!",
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    name: "Tester",
+    username:'tester',
+    avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591170323/samples/people/boy-snow-hoodie.jpg',
     createdAt: formatDate(),
     updatedAt: formatDate(),
   }
