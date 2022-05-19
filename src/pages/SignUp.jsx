@@ -6,14 +6,14 @@ import { FAILURE, SIGNUP } from 'features/authentication/authSlice';
 
 export const SignUp = () => {
     const navigate= useNavigate()
-    const [signUpForm,setSignUpForm] = useState({name:'',email:'',password:''})
+    const [signUpForm,setSignUpForm] = useState({name:'',username:'',email:'',password:''})
     const authDispatch = useDispatch() 
 
     // handle submit
     const handleSubmit = async (e)=>{
         e.preventDefault();
         try{
-            const {data} = await SignupUser(signUpForm.name,signUpForm.email,signUpForm.password)
+            const {data} = await SignupUser(signUpForm.name,signUpForm.username,signUpForm.email,signUpForm.password)
             const user = {
                 token:data.encodedToken,
                 user:data.createdUser
@@ -41,6 +41,11 @@ export const SignUp = () => {
                 <label>Name</label>
                 <input type="text" placeholder="enter name" className="p-2 outline outline-1" value={signUpForm.name}
                 onChange={(e)=>setSignUpForm((form)=>({...form,name:e.target.value}))} />
+            </div>
+            <div className="flex flex-col text-sm text-gray w-10/12 ">
+                <label>UserName</label>
+                <input type="text" placeholder="enter name" className="p-2 outline outline-1" value={signUpForm.username}
+                onChange={(e)=>setSignUpForm((form)=>({...form,username:e.target.value}))} />
             </div>
             <div className="flex flex-col text-sm text-gray w-10/12 ">
                 <label>Email</label>
