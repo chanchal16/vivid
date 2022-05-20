@@ -57,7 +57,6 @@ const initialState = {
 	userPosts: [],
 	allUsers: [],
     profileStatus:'idle',
-	isProfileModalOpen : false
 };
 
 const profileSlice = createSlice({
@@ -68,14 +67,6 @@ const profileSlice = createSlice({
 			state.userProfileToShow = null;
 			state.userPosts = [];
 		},
-		SHOW_PROFILE_MODAL:(state,action) =>{
-			state.isProfileModalOpen = true;
-			// if(action.payload)state.userProfileToShow = action.payload
-		  },
-		  CLOSE_PROFILE_MODAL:(state,action) =>{
-			state.isProfileModalOpen = false
-			state.userProfileToShow = null
-		} 
 	},
 	extraReducers: (builder) => {
 		builder
