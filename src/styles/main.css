@@ -51,6 +51,14 @@ input, textarea{
 input:focus, textarea:focus, select:focus{
     outline: 1px solid;
 }
+.input-group{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    margin-bottom: 2rem;
+    column-gap: 0.5rem;
+    -webkit-box-align: center;
+    align-items: center;
+}
 /* post */
 .addpost{
     position: absolute;
@@ -61,4 +69,23 @@ input:focus, textarea:focus, select:focus{
     flex-direction: column;
     height: fit-content;
     padding: 1rem;
+}
+/* upload img */
+.upload-blur{
+    position: absolute;
+    background: rgba(0,0,0,0.5);
+    width: 5rem;
+    height: 5rem;
+    top:9.2rem;
+    
+    border-radius: 50%;
+    z-index: 1;
+}
+.upload-spinner{
+    position:absolute;
+    top: 44%;
+    right: 44%;
+    z-index: 2;
+    color: white;
+    
 }
