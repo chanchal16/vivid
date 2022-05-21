@@ -5,3 +5,7 @@ export const checkIfExists = (array, id) => {
 export const checkLikedByUser = (currUser,likes) =>{
     return likes?.likedBy.some(({ name }) => name === currUser.name);
 }
+
+export const checkCurrentUser = (users,currUser) =>{
+    return users.find((user) => user.username === currUser);
+}
