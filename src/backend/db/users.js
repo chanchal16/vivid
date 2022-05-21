@@ -14,6 +14,7 @@ export const users = [
     email: "testing@test.com",
     password: "test123",
     bio:'This is a guest account, anyone can use it.',
+    bookmarks:[],
     followers:[
       {
         name: "Chanchal Rajput",
@@ -68,6 +69,7 @@ export const users = [
     email: "chanchal@gmail.com",
     password: "pass890",
     bio:'Creator of this app, frontend developer, learning @neogCamp.',
+    bookmarks:[],
     followers:[
       {
         name: "Tester",
@@ -125,6 +127,7 @@ export const users = [
     email: "jane@yahoo.com",
     password: "jane@12",
     bio:'I am the second user',
+    bookmarks:[],
     followers:[],
     following:[
       {
@@ -144,6 +147,7 @@ export const users = [
     email: "sonam@yahoo.com",
     password: "son@am##",
     bio:'I am the third user',
+    bookmarks:[],
     followers:[],
     following:[
       {
@@ -163,6 +167,7 @@ export const users = [
     email: "babu@gmail.com",
     password: "babu000",
     bio:'Main baburao ganpatrao aapte!',
+    bookmarks:[],
     followers:[
       {
         name: "Chanchal Rajput",
@@ -193,6 +198,7 @@ export const users = [
     email: "john@yahoo.com",
     password: "john#9090",
     bio:'I am the fourth user',
+    bookmarks:[],
     followers:[
       {
         name: "Chanchal Rajput",
