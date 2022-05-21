@@ -10,19 +10,197 @@ export const users = [
     _id: uuid(),
     name: "Tester",
     username:'tester',
-    avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591170323/samples/people/boy-snow-hoodie.jpg',
+    avatarUrl:'https://avatars.dicebear.com/api/male/12.svg',
     email: "testing@test.com",
     password: "test123",
+    bio:'This is a guest account, anyone can use it.',
+    followers:[
+      {
+        name: "Chanchal Rajput",
+        username:'chanchal_16',
+        avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591779540/uzo2kczlerzdc8t9abin.jpg',
+      },
+      {
+        _id:uuid(),
+        name:'Akash Gupta',
+        username:'itsakash',
+        avatarUrl:'https://i.pravatar.cc/150?img=60'
+      },
+      {
+        _id:uuid(),
+        name:'memers',
+        username:'memers_world',
+        avatarUrl:'https://w7.pngwing.com/pngs/434/1003/png-transparent-rage-comic-basketball-player-laughing-white-face-monochrome.png'
+      }
+
+    ],
+    following:[
+      {
+        name: "Chanchal Rajput",
+        username:'chanchal_16',
+        avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591779540/uzo2kczlerzdc8t9abin.jpg',
+      },
+      {
+        name: "Baburao",
+        username:'babubhaiya',
+        avatarUrl:'https://pbs.twimg.com/profile_images/1251244594966040576/v-b1F6AM_400x400.jpg',
+      },
+      {
+        _id:uuid(),
+        name:'Raju',
+        username:'rajuu',
+        avatarUrl:'https://pbs.twimg.com/media/Erbs_ZOXAAAXSFK?format=jpg&name=900x900'
+      },
+      {
+        name: "Jane Harvey",
+        username:'iamjane',
+        avatarUrl:'https://i.pravatar.cc/150?img=45',
+      }
+    ],
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
   {
     _id: uuid(),
-    name: "Chanchla Rajput",
+    name: "Chanchal Rajput",
     username:'chanchal_16',
     avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591779540/uzo2kczlerzdc8t9abin.jpg',
     email: "chanchal@gmail.com",
     password: "pass890",
+    bio:'Creator of this app, frontend developer, learning @neogCamp.',
+    followers:[
+      {
+        name: "Tester",
+        username:'tester',
+        avatarUrl:'https://avatars.dicebear.com/api/male/12.svg',
+      },
+      {
+        name: "Sonam Gupta",
+        username:'sonam_here',
+        avatarUrl:'https://i.pravatar.cc/150?img=36',
+      },
+      {
+        name: "Baburao",
+        username:'babubhaiya',
+        avatarUrl:'https://pbs.twimg.com/profile_images/1251244594966040576/v-b1F6AM_400x400.jpg',
+      },
+      {
+        _id:uuid(),
+        name:'Peter Parker',
+        username:'thepeterparker',
+        avatarUrl:''
+      }
+    ],
+    following:[
+      {
+        name: "Baburao",
+        username:'babubhaiya',
+        avatarUrl:'https://pbs.twimg.com/profile_images/1251244594966040576/v-b1F6AM_400x400.jpg',
+      },
+      {
+        name: "Tester",
+        username:'tester',
+        avatarUrl:'https://avatars.dicebear.com/api/male/12.svg',
+      },
+      {
+        name: "John Smith",
+        username:'jonny',
+        avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591170323/samples/people/boy-snow-hoodie.jpg',
+      },
+      {
+        _id:uuid(),
+        name:'Raju',
+        username:'rajuu',
+        avatarUrl:'https://pbs.twimg.com/media/Erbs_ZOXAAAXSFK?format=jpg&name=900x900'
+      },
+    ],
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    name: "Jane Harvey",
+    username:'iamjane',
+    avatarUrl:'https://i.pravatar.cc/150?img=45',
+    email: "jane@yahoo.com",
+    password: "jane@12",
+    bio:'I am the second user',
+    followers:[],
+    following:[
+      {
+        name: "Tester",
+        username:'tester',
+        avatarUrl:'https://avatars.dicebear.com/api/male/12.svg',
+      },
+    ],
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    name: "Sonam Gupta",
+    username:'sonam_here',
+    avatarUrl:'https://i.pravatar.cc/150?img=36',
+    email: "sonam@yahoo.com",
+    password: "son@am##",
+    bio:'I am the third user',
+    followers:[],
+    following:[
+      {
+        name: "Chanchal Rajput",
+        username:'chanchal_16',
+        avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591779540/uzo2kczlerzdc8t9abin.jpg',
+      },
+    ],
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    name: "Baburao",
+    username:'babubhaiya',
+    avatarUrl:'https://pbs.twimg.com/profile_images/1251244594966040576/v-b1F6AM_400x400.jpg',
+    email: "babu@gmail.com",
+    password: "babu000",
+    bio:'Main baburao ganpatrao aapte!',
+    followers:[
+      {
+        name: "Chanchal Rajput",
+        username:'chanchal_16',
+        avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591779540/uzo2kczlerzdc8t9abin.jpg',
+      },
+    ],
+    following:[
+      {
+        name: "Chanchal Rajput",
+        username:'chanchal_16',
+        avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591779540/uzo2kczlerzdc8t9abin.jpg',
+      },
+      {
+        name: "Tester",
+        username:'tester',
+        avatarUrl:'https://avatars.dicebear.com/api/male/12.svg',
+      },
+    ],
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    name: "John Smith",
+    username:'jonny',
+    avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591170323/samples/people/boy-snow-hoodie.jpg',
+    email: "john@yahoo.com",
+    password: "john#9090",
+    bio:'I am the fourth user',
+    followers:[
+      {
+        name: "Chanchal Rajput",
+        username:'chanchal_16',
+        avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591779540/uzo2kczlerzdc8t9abin.jpg',
+      },
+    ],
+    following:[],
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
