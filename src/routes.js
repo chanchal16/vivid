@@ -1,5 +1,5 @@
 import { RequireAuth } from 'components/common/RequireAuth';
-import {Bookmarks, Feed, Login,SignUp} from './pages';
+import {Bookmarks, Feed, PostPage,Login,SignUp, Explore} from './pages';
 
 const ROUTES = [
     {
@@ -9,18 +9,26 @@ const ROUTES = [
     {
         path:"/signup",
         element:<SignUp/>
-    },
-    {
-        path:'/',
-        element:<Feed/>
-    },
+    },   
     {
         path:'/',
         element:<RequireAuth/>,
         children:[
             {
+                path:'/',
+                element:<Feed/>
+            },
+            {
                 path:'bookmarks',
                 element:<Bookmarks/>
+            },
+            {
+                path:'/posts/:postId',
+                element:<PostPage/>
+            },
+            {
+                path:'explore',
+                element:<Explore/>
             }
         ]
     }
