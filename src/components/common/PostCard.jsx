@@ -7,16 +7,20 @@ import { addToBookmarks, deletePost, likePost, removeFromBookmarks, unLikePost }
 import { checkIfExists, checkLikedByUser } from 'utils/check-if-exists';
 import { Link } from 'react-router-dom';
 
-export const PostCard = ({post}) => {
+export const PostCard = ({post,avatar}) => {
     const authState = useSelector(state => state.auth);
     let{user} = authState;
     const postState = useSelector(state => state.post)
     const {bookmarkList} = postState
+    let {allUsers} = useSelector((state) => state.users);
     const dispatch = useDispatch() 
     // check if post is liked by user
     const isLikedByUser = checkLikedByUser(user?.user,post?.likes)
     // check if post is bookmarked by user
     const isBookmarked = checkIfExists(bookmarkList,post._id)
+
+    // check currUser
+    const currUserProfile = allUsers?.find((user) => user.username === post.username)
 
     // post like handler
     const likeHandler = (postId)=>{
@@ -40,7 +44,7 @@ export const PostCard = ({post}) => {
         <div className="flex items-center px-4 py-2">
             <img
             className="w-12 h-12 rounded-full"
-            src={post?.avatarUrl || "https://i.pravatar.cc/300"}
+            src={ currUserProfile?.avatarUrl || post.avatarUrl }
             alt={post.username}
             />
             <div>

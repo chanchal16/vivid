@@ -1,4 +1,5 @@
 import { RequireAuth } from 'components/common/RequireAuth';
+import { EditProfile } from 'features/profile/EditProfile';
 import {Bookmarks, Feed, PostPage,Login,SignUp, Explore} from './pages';
 
 const ROUTES = [
@@ -23,6 +24,14 @@ const ROUTES = [
                 element:<Bookmarks/>
             },
             {
+                path:'profile/:username',
+                element:<Profile/>
+            },
+            {
+                path:'profile/edit',
+                element:<EditProfile/>
+           },
+           {
                 path:'/posts/:postId',
                 element:<PostPage/>
             },

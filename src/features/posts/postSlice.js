@@ -3,7 +3,6 @@ import axios from 'axios';
 
 const initialState = {
   allPosts:[],
-  userPosts:[],
   bookmarkList:[],
   status: 'Idle',
   isModalOpen:false,
@@ -171,7 +170,6 @@ export const postSlice = createSlice({
       // delete post
 			.addCase(deletePost.fulfilled, (state, action) => {
 				state.allPosts = state.allPosts.filter(post=> post._id !== action.meta.arg)
-				state.userPosts = state.userPosts.filter(post=>post._id !== action.payload)
 			})
       // like post
       .addCase(likePost.fulfilled,(state,action)=>{
