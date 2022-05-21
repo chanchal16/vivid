@@ -1,4 +1,5 @@
 import { getPosts, SHOW_MODAL } from 'features/posts/postSlice';
+import { SuggestedUsers } from 'features/profile/SuggestedUsers';
 import React,{useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { PostCard } from '../components/common/PostCard';
@@ -38,6 +39,7 @@ export const Feed = () => {
             }
         </div>
         <div className="col-span-6 md:col-span-2">
+          <SuggestedUsers/>
         </div>
     </div>
   )
