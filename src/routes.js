@@ -1,6 +1,6 @@
 import { RequireAuth } from 'components/common/RequireAuth';
 import { EditProfile } from 'features/profile/EditProfile';
-import {Bookmarks, Feed, PostPage,Login,SignUp, Explore} from './pages';
+import {Bookmarks, Feed, Profile,PostPage,Login,SignUp, Explore} from './pages';
 
 const ROUTES = [
     {
