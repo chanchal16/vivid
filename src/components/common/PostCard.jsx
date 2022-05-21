@@ -5,6 +5,7 @@ import {FaRegComment} from 'react-icons/fa'
 import {RiThumbUpLine,RiThumbUpFill,RiBookmarkLine,RiBookmarkFill} from 'react-icons/ri'
 import { addToBookmarks, deletePost, likePost, removeFromBookmarks, unLikePost } from 'features/posts/postSlice';
 import { checkIfExists, checkLikedByUser } from 'utils/check-if-exists';
+import { Link } from 'react-router-dom';
 
 export const PostCard = ({post,avatar}) => {
     const authState = useSelector(state => state.auth);
@@ -48,14 +49,14 @@ export const PostCard = ({post,avatar}) => {
             />
             <div>
                 <span className="px-4 text-lg">
-                    {post.username}
+                    {post?.username}
                 </span>
             </div>
         </div>
         <div className="px-4 text-justify">
-            <p className="py-2">{post.content}</p>
+            <p className="py-2">{post?.content}</p>
         </div>
-        {post?.img && <img className="w-full" src={post.img} alt="" />}
+        {post?.img && <img className="w-full" src={post?.img} alt="" />}
         <section className="flex p-4 justify-between">
             <div className="flex gap-x-6">
                 <button onClick={()=>likeHandler(post._id)}
@@ -64,11 +65,12 @@ export const PostCard = ({post,avatar}) => {
                     { isLikedByUser ? <RiThumbUpFill/> :<RiThumbUpLine /> }
                     <span className="ml-1 text-lg">{ post?.likes?.likeCount > 0 && post.likes.likeCount }</span>
                 </button>
-                <button
-                    className="p-2 mr-1 rounded-full text-2xl hover:text-primary"
+                <Link to={`/posts/${post?._id}`}
+                    className=" flex items-center p-2 mr-1 rounded-full text-2xl text-primary hover:text-pista"
                     title="comment">
                     <FaRegComment/>
-                </button>
+                    <span className="ml-1 text-lg">{ post?.comments.length > 0 && post.comments.length }</span>
+                </Link>
             </div>
             <div className="flex gap-x-2">
                 <button onClick={bookmarkHandler}
@@ -77,7 +79,7 @@ export const PostCard = ({post,avatar}) => {
                     {isBookmarked ? <RiBookmarkFill/> : <RiBookmarkLine/>}
                 </button>
                 <button className="p-2 mr-1 rounded-full text-2xl hover:text-primary"
-                title="delete" onClick={()=>dispatch(deletePost(post._id))}>
+                title="delete" onClick={()=>dispatch(deletePost(post?._id))}>
                     <FiTrash/>
                 </button>
             </div>           

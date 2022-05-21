@@ -7,7 +7,6 @@ const initialState = {
   status: 'Idle',
   isModalOpen:false,
   selectedPost:null,
-  isLiked:false
 }
 // get all posts
 export const getPosts = createAsyncThunk("posts/getPosts", async () => {
@@ -66,6 +65,16 @@ export const unLikePost = createAsyncThunk(
       console.error(error)
     }
 });
+// get bookmarks
+export const getBookmarks = createAsyncThunk("posts/getBookmarks",async({token})=>{
+  try{
+    const {data} = await axios.get(`/api/users/bookmark`,
+    {headers:{authorization:token}});
+    return data.bookmarks
+  }catch(err){   
+    console.error(err)
+  }
+})
 // bookmark a post
 export const addToBookmarks = createAsyncThunk("posts/addToBookmarks",async({token,postId})=>{
   try{
@@ -86,16 +95,40 @@ export const removeFromBookmarks = createAsyncThunk("posts/removeFromBookmarks",
     console.error(err)
   }
 })
-// get bookmarks
-export const getBookmarks = createAsyncThunk("posts/getBookmarks",async({token})=>{
-  try{
-    const {data} = await axios.get(`/api/users/bookmark`,
+// comments
+export const getComments = createAsyncThunk("posts/getComments", async ({token,postId}) => {
+  try {
+    const { data } = await axios.get(`/api/comments/${postId}`,
     {headers:{authorization:token}});
-    return data.bookmarks
-  }catch(err){   
+    return data.posts.comments;
+  } catch (error) {
+    console.log(error);
+  }
+});
+// comment on a post
+export const addComment = createAsyncThunk("posts/addComment",async({token,postId,commentData})=>{
+  try{
+    const {data} = await axios.post(`/api/comments/add/${postId}`,{commentData},
+    {headers:{authorization:token}});
+    return data.posts
+  }catch(err){
     console.error(err)
   }
 })
+// delete a comment
+export const removeComment = createAsyncThunk("posts/removeComment",async({token,postId,commentId})=>{
+  try{
+    const {data} = await axios.post(`/api/comments/delete/${postId}/${commentId}`,{},
+    {headers:{authorization:token}});
+    return data.posts
+  }catch(err){
+    console.error(err)
+  }
+})
+
+
+
+
 
 export const postSlice = createSlice({
     name: 'posts',
@@ -143,8 +176,7 @@ export const postSlice = createSlice({
         
         state.allPosts = action.payload;
       })
-      .addCase(likePost.rejected,(state,action)=>{
-        
+      .addCase(likePost.rejected,(state,action)=>{        
         console.log(action.error.message)
       })
       // unlike post
@@ -185,6 +217,39 @@ export const postSlice = createSlice({
         state.bookmarkList = action.payload
       })
       .addCase(removeFromBookmarks.rejected,(state)=>{
+        state.status = 'Rejected';
+      })
+      // get comments
+      .addCase(getComments.pending,(state)=>{
+        state.status = 'Loading'
+      })
+      .addCase(getComments.fulfilled,(state,action)=>{
+        state.status = 'Fulfilled';
+        state.allPosts = action.payload
+      })
+      .addCase(getComments.rejected,(state)=>{
+        state.status = 'Rejected';
+      })
+      // add comment
+      .addCase(addComment.pending,(state)=>{
+        state.status = 'Loading';
+      })
+      .addCase(addComment.fulfilled,(state,action)=>{
+        state.status = 'Fulfilled';
+        state.allPosts = action.payload
+      })
+      .addCase(addComment.rejected,(state)=>{
+        state.status = 'Rejected';
+      })
+      // remove from comments
+      .addCase(removeComment.pending,(state)=>{
+        state.status = 'Loading';
+      })
+      .addCase(removeComment.fulfilled,(state,action)=>{
+        state.status = 'Fulfilled';
+        state.allPosts = action.payload
+      })
+      .addCase(removeComment.rejected,(state)=>{
         state.status = 'Rejected';
       })
     }
