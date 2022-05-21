@@ -39,9 +39,9 @@ export const PostCard = ({post}) => {
     <article className='bg-white dark:bg-gray-800 rounded border-1 mx-2 md:mx-0 m-5'>
         <div className="flex items-center px-4 py-2">
             <img
-            className="w-12 rounded-full"
-            src={post?.avatar || "https://i.pravatar.cc/300"}
-            alt={post?.username}
+            className="w-12 h-12 rounded-full"
+            src={post?.avatarUrl || "https://i.pravatar.cc/300"}
+            alt={post.username}
             />
             <div>
                 <span className="px-4 text-lg">

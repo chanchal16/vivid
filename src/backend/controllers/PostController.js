@@ -88,7 +88,9 @@ export const createPostHandler = function (schema, request) {
       },
       comments:[],
       img:{},
-      username: user.name,
+      username: user.username,
+      name:user.name,
+      avatarUrl:user.avatarUrl,
       createdAt: formatDate(),
       updatedAt: formatDate(),
     };

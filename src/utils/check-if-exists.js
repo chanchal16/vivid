@@ -1,5 +1,5 @@
 export const checkIfExists = (array, id) => {
-    return array.find((item) => item._id === id);
+    return array.find((itemId) => itemId === id);
 };
 
 export const checkLikedByUser = (currUser,likes) =>{
