@@ -5,12 +5,12 @@ import { useParams,Link } from "react-router-dom";
 import {resetProfile,getUserPost,getUser, getAllUsers} from 'features/profile/profileSlice'
 import {MdSettings} from "react-icons/md";
 import { PostCard } from 'components/common/PostCard';
+import { FollowerSection } from 'features/followers/FollowerSection';
 
 export const Profile = () => {
     const dispatch = useDispatch();
 	const {username} = useParams();
     let {userProfileToShow,userPosts} = useSelector((state) => state.users)   
-
     const authState = useSelector(state => state.auth);
     let{user} = authState;
     let { allPosts } = useSelector((state) => state.post);
@@ -55,6 +55,10 @@ export const Profile = () => {
                         <PostCard post={post} key={post._id} avatar={userProfileToShow.avatarUrl}/>
                     ))
                 }
+            </div>
+            {/* followers */}
+            <div className="follow-section mt-4 col-span-12 md:col-span-4">
+                <FollowerSection username={username} />
             </div>
         </section>
     </div>
