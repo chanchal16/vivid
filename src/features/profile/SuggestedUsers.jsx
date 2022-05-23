@@ -10,19 +10,13 @@ export const SuggestedUsers = () => {
     let{user} = authState;
     const dispatch = useDispatch()
     const currUser = checkCurrentUser(allUsers,user?.user?.username)
-    console.log('curuser',currUser)
 
     useEffect(() => {
       dispatch(getAllUsers())     
     }, [dispatch]);
 
-    const suggestedUsers = allUsers
-		.filter(
-			(usr) =>!checkCurrentUser( currUser?.following,usr.username,) &&
-				user?.user.username !== usr.username
-		)
-		.slice(0, 3);
-	console.log('suggested',suggestedUsers);
+    const suggestedUsers = allUsers.filter(curruser=>currUser.following.username !== curruser.username 
+        && curruser.username !== user?.user?.username).slice(0,3)
     
   return (
     <section className="p-4 flex flex-col">
