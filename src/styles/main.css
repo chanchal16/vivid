@@ -30,15 +30,15 @@ main{
     max-width: 1024px;
     margin: auto;
 }
-ul li a{
+.link{
     padding: 0.25rem;
         border-radius: 50%;
 }
-ul li a:hover{   
+.link:hover{   
     background-color: #d1e3ca;
     color: white;
 }
-ul li a.active{
+.link.active{
     color: #fdba74;
     background-color: #ffedd5;
 }
@@ -86,6 +86,15 @@ input:focus, textarea:focus, select:focus{
     top: 44%;
     right: 44%;
     z-index: 2;
-    color: white;
-    
+    color: white;   
+}
+/* modal backdrop */
+.modal_backdrop{
+    background: rgba(0,0,0,0.85);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right:0;
+    bottom: 0;
+    z-index: 1;        
 }
