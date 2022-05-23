@@ -25,22 +25,22 @@ export const Navbar = () => {
         <div className="flex items-center flex-grow md:justify-end">
             <ul className="flex flex-grow md:flex-initial items-center justify-between md:gap-x-4 flex-wrap">
                 <li>
-                    <NavLink end to="/" className="flex items-center" aria-label="Home">
+                    <NavLink end to="/" className=" link flex items-center" aria-label="Home">
                         <HiOutlineHome size='1.5rem' />
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink end to="/explore" className="flex items-center" aria-label="Search">
+                    <NavLink end to="/explore" className="link flex items-center" aria-label="Search">
                         <MdOutlineExplore size='1.5rem' />
                     </NavLink>
                 </li>              
                     <li>
-                        <NavLink end to="/addpost" className="flex items-center" aria-label="Add post">
+                        <NavLink end to="/addpost" className=" link flex items-center" aria-label="Add post">
                             <MdAddCircleOutline size='1.5rem' />
                         </NavLink>
                     </li>            
                 <li>
-                    <NavLink end to="/bookmarks" className="flex items-center relative" aria-label="Notifications">
+                    <NavLink end to="/bookmarks" className=" link flex items-center relative" aria-label="Notifications">
                         <MdOutlineBookmarkBorder size='1.5rem' />
                         {bookmarkList?.length>0? <div className='absolute rounded-full p-1 left-4 bottom-5 bg-primary'></div> : null}
                     </NavLink>
@@ -48,7 +48,7 @@ export const Navbar = () => {
 
                 <li>
                     { user?.user ? (
-                    <NavLink end to={`/profile/${user?.user?.username}`} className="flex items-center profile-pic" aria-label="User Profile">
+                    <NavLink end to={`/profile/${user?.user?.username}`} className="link flex items-center profile-pic" aria-label="User Profile">
                         <MdPersonOutline size='1.5rem' />
                     </NavLink>) : (
                         
