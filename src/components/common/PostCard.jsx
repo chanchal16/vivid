@@ -6,6 +6,9 @@ import {RiThumbUpLine,RiThumbUpFill,RiBookmarkLine,RiBookmarkFill} from 'react-i
 import { addToBookmarks, deletePost, likePost, removeFromBookmarks, SHOW_MODAL, unLikePost } from 'features/posts/postSlice';
 import { checkIfExists, checkLikedByUser } from 'utils/check-if-exists';
 import { Link } from 'react-router-dom';
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
 
 export const PostCard = ({post}) => {
     const[showDropdown,setShowDropdown] = useState(false)
@@ -53,11 +56,15 @@ export const PostCard = ({post}) => {
             src={ currUserProfile?.avatarUrl || post.avatarUrl }
             alt={post.username}
             />
-            <div>
+            <div className='flex flex-col'>
                 <span className="px-4 text-lg">
                     {post?.username}
                 </span>
+                <p className="inline-block text-xs ml-4 text-gray">
+                {dayjs(post.updatedAt).fromNow()}
+                </p>
             </div>
+            
             {/* show more */}
             {
                 post.username === user?.user?.username && (
@@ -82,13 +89,12 @@ export const PostCard = ({post}) => {
                         )}
                     </div>
                 )
-            }
-            
+            }           
         </div>
         <div className="px-4 text-justify">
             <p className="py-2">{post?.content}</p>
         </div>
-        {post?.img && <img className="w-full" src={post?.img} alt="" />}
+        {post?.postImg && <img className="w-full" src={post?.postImg.url} alt="" />}
         <section className="flex p-4 justify-between">
             <div className="flex gap-x-6">
                 <button onClick={()=>likeHandler(post._id)}
