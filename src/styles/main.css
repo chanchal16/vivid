@@ -42,6 +42,9 @@ main{
     color: #fdba74;
     background-color: #ffedd5;
 }
+.default{
+    border-color: #e2e8f0;
+}
 /* inputs */
 input, textarea{
     border-radius: 0.5rem;
@@ -76,8 +79,7 @@ input:focus, textarea:focus, select:focus{
     background: rgba(0,0,0,0.5);
     width: 5rem;
     height: 5rem;
-    top:9.2rem;
-    
+    top:9.2rem;   
     border-radius: 50%;
     z-index: 1;
 }
