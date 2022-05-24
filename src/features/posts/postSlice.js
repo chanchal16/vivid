@@ -7,15 +7,16 @@ const initialState = {
   status: 'Idle',
   isModalOpen:false,
   selectedPost:null,
-  isEditModeOn:false
+  isEditModeOn:false,
+  sortPostType:''
 }
 // get all posts
 export const getPosts = createAsyncThunk("posts/getPosts", async () => {
   try {
     const { data } = await axios.get("/api/posts");
     return data.posts;
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.log(err);
   }
 });
 // add post
@@ -26,8 +27,8 @@ export const createPost = createAsyncThunk("posts/createPost", async ({token,pos
             headers:{authorization:token}
         })
 			return data.posts;
-  } catch (error) {
-    console.log(error.response);
+  } catch (err) {
+    console.log(err);
   }
 });
 // edit post
@@ -46,8 +47,8 @@ export const deletePost = createAsyncThunk(
       const { data } = await axios.delete(`/api/posts/${postId}`,
       {headers:{authorization:token}});
       return data.posts;
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
     }
   }
 );
@@ -71,8 +72,8 @@ export const unLikePost = createAsyncThunk(
       {headers:{authorization:token}}
       );
       return data.posts;
-    } catch (error) {      
-      console.error(error)
+    } catch (err) {      
+      console.error(err)
     }
 });
 // get bookmarks
@@ -111,8 +112,8 @@ export const getComments = createAsyncThunk("posts/getComments", async ({token,p
     const { data } = await axios.get(`/api/comments/${postId}`,
     {headers:{authorization:token}});
     return data.posts.comments;
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.log(err);
   }
 });
 // comment on a post
@@ -140,12 +141,15 @@ export const postSlice = createSlice({
     name: 'posts',
     initialState,
     reducers: {
+      SORT_POST_TYPE:(state,action)=>{
+        state.sortPostType = action.payload
+      },
       SHOW_MODAL:(state,action) =>{
         state.isModalOpen = true;
         state.selectedPost = action.payload
         state.isEditModeOn = action.payload ? true : false
       },
-      CLOSE_MODAL:(state,action) =>{
+      CLOSE_MODAL:(state) =>{
         state.isModalOpen = false
         state.selectedPost = null
       }      
@@ -162,6 +166,7 @@ export const postSlice = createSlice({
       })
       .addCase(getPosts.rejected,(state) =>{
         state.status = 'Rejected'
+        console.log(action.error.message)
       })
       // add post
       .addCase(createPost.pending, (state) =>{
@@ -171,13 +176,13 @@ export const postSlice = createSlice({
         state.status = 'Fulfilled';
         state.allPosts = action.payload;
       })
-      .addCase(createPost.rejected, (state) =>{
+      .addCase(createPost.rejected, (state,action) =>{
         state.status = 'Rejected';
+        console.log(action.error.message)
       })
       // edit post
       .addCase(editPost.fulfilled,(state,action)=>{
-        state.status = 'Fulfilled';
-        console.log('meta',action.meta)
+        state.status = 'Fulfilled'
         state.allPosts = action.payload;
         state.selectedPost = null
        
@@ -192,10 +197,11 @@ export const postSlice = createSlice({
 			})
       // like post
       .addCase(likePost.fulfilled,(state,action)=>{
-        
+        state.status = 'Fulfilled';
         state.allPosts = action.payload;
       })
-      .addCase(likePost.rejected,(state,action)=>{        
+      .addCase(likePost.rejected,(state,action)=>{ 
+        state.status = 'Rejected';       
         console.log(action.error.message)
       })
       // unlike post
@@ -203,6 +209,7 @@ export const postSlice = createSlice({
         state.allPosts = action.payload
       })
       .addCase(unLikePost.rejected,(state,action)=>{
+        state.status = 'Rejected';
         console.log(action.error.message)
       })
       // get bookmarks
@@ -213,8 +220,9 @@ export const postSlice = createSlice({
         state.status = 'Fulfilled';
         state.bookmarkList = action.payload
       })
-      .addCase(getBookmarks.rejected,(state)=>{
+      .addCase(getBookmarks.rejected,(state,action)=>{
         state.status = 'Rejected';
+        console.log(action.error.message)
       })
       // add to bookmark
       .addCase(addToBookmarks.pending,(state)=>{
@@ -224,8 +232,9 @@ export const postSlice = createSlice({
         state.status = 'Fulfilled';
         state.bookmarkList = action.payload
       })
-      .addCase(addToBookmarks.rejected,(state)=>{
+      .addCase(addToBookmarks.rejected,(state,action)=>{
         state.status = 'Rejected';
+        console.log(action.error.message)
       })
       // remove from bookmark
       .addCase(removeFromBookmarks.pending,(state)=>{
@@ -235,8 +244,9 @@ export const postSlice = createSlice({
         state.status = 'Fulfilled';
         state.bookmarkList = action.payload
       })
-      .addCase(removeFromBookmarks.rejected,(state)=>{
+      .addCase(removeFromBookmarks.rejected,(state,action)=>{
         state.status = 'Rejected';
+        console.log(action.error.message)
       })
       // get comments
       .addCase(getComments.pending,(state)=>{
@@ -246,8 +256,9 @@ export const postSlice = createSlice({
         state.status = 'Fulfilled';
         state.allPosts = action.payload
       })
-      .addCase(getComments.rejected,(state)=>{
+      .addCase(getComments.rejected,(state,action)=>{
         state.status = 'Rejected';
+        console.log(action.error.message)
       })
       // add comment
       .addCase(addComment.pending,(state)=>{
@@ -257,8 +268,9 @@ export const postSlice = createSlice({
         state.status = 'Fulfilled';
         state.allPosts = action.payload
       })
-      .addCase(addComment.rejected,(state)=>{
+      .addCase(addComment.rejected,(state,action)=>{
         state.status = 'Rejected';
+        console.log(action.error.message)
       })
       // remove from comments
       .addCase(removeComment.pending,(state)=>{
@@ -268,12 +280,13 @@ export const postSlice = createSlice({
         state.status = 'Fulfilled';
         state.allPosts = action.payload
       })
-      .addCase(removeComment.rejected,(state)=>{
+      .addCase(removeComment.rejected,(state,action)=>{
         state.status = 'Rejected';
+        console.log(action.error.message)
       })
     }
   })
   
   // Action creators are generated for each case reducer function
-  export const { SHOW_MODAL, CLOSE_MODAL } = postSlice.actions
+  export const { SHOW_MODAL, CLOSE_MODAL,SORT_POST_TYPE } = postSlice.actions
   export default postSlice.reducer
