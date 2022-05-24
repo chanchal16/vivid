@@ -7,5 +7,5 @@ export const checkLikedByUser = (currUser,likes) =>{
 }
 
 export const checkCurrentUser = (users,currUser) =>{
-    return users.find((user) => user.username === currUser);
+    return users?.find((user) => user.username === currUser);
 }
