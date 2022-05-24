@@ -10,7 +10,9 @@ module.exports = {
       'primary': '#fdba74',
       'primary-dark':'#fb923c',
       'pista':'#d1e3ca',
-      'pista-dark':'#AFD89F'
+      'pista-dark':'#AFD89F',
+      'red':'#f87171',
+      'red-dark':'#ef4444'
     },
     extend: {},
   },
