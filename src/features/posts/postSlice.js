@@ -7,6 +7,7 @@ const initialState = {
   status: 'Idle',
   isModalOpen:false,
   selectedPost:null,
+  isEditModeOn:false
 }
 // get all posts
 export const getPosts = createAsyncThunk("posts/getPosts", async () => {
@@ -29,12 +30,21 @@ export const createPost = createAsyncThunk("posts/createPost", async ({token,pos
     console.log(error.response);
   }
 });
+// edit post
+export const editPost = createAsyncThunk("posts/editPost", async({token,postId,postData})=>{
+  try{
+    const {data} = await axios.post(`/api/posts/edit/${postId}`,{postData},
+    {headers:{authorization:token}})
+    return data.posts;
+  }catch(err){console.error(err)}
+})
 // delete post
 export const deletePost = createAsyncThunk(
   "posts/deletePost",
-  async ({ postId }) => {
+  async ({token, postId }) => {
     try {
-      const { data } = await axios.delete(`/api/posts/${postId}`);
+      const { data } = await axios.delete(`/api/posts/${postId}`,
+      {headers:{authorization:token}});
       return data.posts;
     } catch (error) {
       console.log(error);
@@ -126,17 +136,14 @@ export const removeComment = createAsyncThunk("posts/removeComment",async({token
   }
 })
 
-
-
-
-
 export const postSlice = createSlice({
     name: 'posts',
     initialState,
     reducers: {
       SHOW_MODAL:(state,action) =>{
         state.isModalOpen = true;
-        if(action.payload)state.selectedPost = action.payload
+        state.selectedPost = action.payload
+        state.isEditModeOn = action.payload ? true : false
       },
       CLOSE_MODAL:(state,action) =>{
         state.isModalOpen = false
@@ -167,9 +174,21 @@ export const postSlice = createSlice({
       .addCase(createPost.rejected, (state) =>{
         state.status = 'Rejected';
       })
+      // edit post
+      .addCase(editPost.fulfilled,(state,action)=>{
+        state.status = 'Fulfilled';
+        console.log('meta',action.meta)
+        state.allPosts = action.payload;
+        state.selectedPost = null
+       
+      })
+      .addCase(editPost.rejected,(state,action)=>{
+        state.status = 'Rejected';
+        console.log(action.payload)
+      })
       // delete post
 			.addCase(deletePost.fulfilled, (state, action) => {
-				state.allPosts = state.allPosts.filter(post=> post._id !== action.meta.arg)
+        state.allPosts = action.payload
 			})
       // like post
       .addCase(likePost.fulfilled,(state,action)=>{
