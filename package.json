@@ -8,7 +8,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.22.0",
-    "dayjs": "^1.10.7",
+    "dayjs": "^1.11.2",
     "jwt-decode": "^3.1.2",
     "jwt-encode": "^1.0.1",
     "miragejs": "^0.1.42",
