@@ -56,10 +56,7 @@ https://user-images.githubusercontent.com/56486295/170035258-e06d7a7d-e494-440c-
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/chanchal16/vivid
-
-
-.git
+   git clone https://github.com/chanchal16/vivid.git
    ```
 2. Install NPM packages
    ```sh
