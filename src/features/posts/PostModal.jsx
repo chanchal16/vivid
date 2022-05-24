@@ -13,40 +13,62 @@ export const PostModal = () => {
     const [postContent,setPostContent] = useState('' );
     const [postImg,setPostImg] = useState({})
     
+  // upload img
+    const uploadImage = async(e)=>{
+      try{
+        const data = new FormData();
+        data.append("file", e.target?.files[0]);
+        data.append("upload_preset",'fryrvzcc');
+        data.append("cloud_name","cr07")
+        const requestOptions = {
+          method: "POST",
+          body: data,
+        };
+        const response = await fetch(
+          "https://api.cloudinary.com/v1_1/cr07/image/upload",
+          requestOptions
+        )
+        const { url, original_filename } = await response.json();
+        setPostImg({url,original_filename})
+      }catch(err){console.error(err)}
+    }
 
-    const createNewPost =async (e)=>{
+    const submitPostHandler = async (e)=>{
         e.preventDefault();
         let token = user?.token
-          let postData = {
-              content:postContent,
-              img:postImg,
-              comments:[]
-          }
-          if(isEditModeOn){ 
-            dispatch(editPost({token,postId:selectedPost._id,postData}))
-          }else{
-          dispatch(createPost({token,postData}))
-          }              
+        let postData = {
+          content:postContent,
+          postImg,
+          comments:[]
+        }
+         
+        if(isEditModeOn){ 
+          dispatch(editPost({token,postId:selectedPost._id,postData}))
+        }else{
+        dispatch(createPost({token,postData}))
+        }              
       setPostContent('') ;
       dispatch(CLOSE_MODAL())   
     }
     
   return (
     isModalOpen && (<div className="absolute top-0 left-0 h-screen w-full backdrop-blur-sm mt-[8vh] z-10 flex justify-center">
-    <div className="addpost mb-8 max-w-full w-[32rem]">
+    <div className="addpost m-16 max-w-full w-[32rem]">
         <div className="flex justify-between">
-          <h2 className="text-xl ">Share your thoughts!</h2>
+          <h2 className="text-xl p-1 text-gray-dark">Share your vivid thoughts!</h2>
           <button className="px-3" onClick={() => dispatch(CLOSE_MODAL())}>
             <MdClose size="1.5rem" />
           </button>
         </div>
-        <form onSubmit={createNewPost}>
+        <form onSubmit={submitPostHandler}>
             <textarea name="postContent" onChange={(e)=>setPostContent(e.target.value)} value={postContent || selectedPost?.content} 
             id="post_content" placeholder="What's on your mind?" rows="3" className='w-full'></textarea>
 
             <div className="flex justify-between items-center mt-4">
-                <label className="post-btn-upload flex items-center" >
-                    <MdPhoto className="text-3xl" title={"Upload Image"} />
+                <label className="post-btn-upload flex items-center cursor-pointer" >
+                    <MdPhoto className="text-3xl text-gray-dark hover:text-primary" title={"Upload Image"} />
+                    <input type="file" name="postImage" id="post-image" className="hidden" onChange={uploadImage} />
+                        <small className="text-gray-400 text-xs">{postImg.original_filename?.length > 20 ? postImg?.original_filename.substring(0,20)+"...": postImg?.original_filename}</small>
                 </label>
                 <button type="submit" className="bg-primary p-1 rounded hover:bg-primary-dark">
                     {selectedPost ? 'update' : 'add'}
