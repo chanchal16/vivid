@@ -1,13 +1,14 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { useDispatch,useSelector } from 'react-redux';
-import {FiTrash} from 'react-icons/fi';
+import {FiTrash,FiEdit,FiMoreVertical} from 'react-icons/fi';
 import {FaRegComment} from 'react-icons/fa'
 import {RiThumbUpLine,RiThumbUpFill,RiBookmarkLine,RiBookmarkFill} from 'react-icons/ri'
-import { addToBookmarks, deletePost, likePost, removeFromBookmarks, unLikePost } from 'features/posts/postSlice';
+import { addToBookmarks, deletePost, likePost, removeFromBookmarks, SHOW_MODAL, unLikePost } from 'features/posts/postSlice';
 import { checkIfExists, checkLikedByUser } from 'utils/check-if-exists';
 import { Link } from 'react-router-dom';
 
-export const PostCard = ({post,avatar}) => {
+export const PostCard = ({post}) => {
+    const[showDropdown,setShowDropdown] = useState(false)
     const authState = useSelector(state => state.auth);
     let{user} = authState;
     const postState = useSelector(state => state.post)
@@ -39,8 +40,13 @@ export const PostCard = ({post,avatar}) => {
             dispatch(removeFromBookmarks({token:user?.token, postId:post._id}))
         }
     }
+
+    const editClickHandler = (post)=>{
+        dispatch(SHOW_MODAL(post))
+        setShowDropdown(false)
+    }
   return (
-    <article className='bg-white dark:bg-gray-800 rounded border-1 mx-2 md:mx-0 m-5'>
+    <article className='bg-white rounded border-1 mx-2 md:mx-0 m-5'>
         <div className="flex items-center px-4 py-2">
             <img
             className="w-12 h-12 rounded-full"
@@ -52,6 +58,32 @@ export const PostCard = ({post,avatar}) => {
                     {post?.username}
                 </span>
             </div>
+            {/* show more */}
+            {
+                post.username === user?.user?.username && (
+                    <div className='ml-auto relative'>
+                        <button data-tooltip="More" onClick={()=>setShowDropdown(prev=>!prev)}
+                        className="tooltip mx-2 w-10 h-10 flex items-center justify-center rounded-full cursor-pointer hover:text-primary">
+                            <FiMoreVertical/> 
+                        </button>
+                        {showDropdown && (
+                            <div className="absolute right-0 mx-2 bg-[#f8fafc]  px-4 py-2 rounded min-w-max w-32">
+                                <button
+                                    className="w-full py-1 rounded flex items-center gap-1 text-pista-dark hover:text-[#9bc989]"
+                                    onClick={() => editClickHandler(post)}>
+                                   <FiEdit/> Edit
+                                </button>
+                                <button
+                                    className="w-full py-1 rounded flex items-center gap-1 text-red hover:text-red-dark"
+                                    onClick={() => dispatch(deletePost({token:user?.token,postId:post?._id}))}>
+                                  <FiTrash/>  Delete
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                )
+            }
+            
         </div>
         <div className="px-4 text-justify">
             <p className="py-2">{post?.content}</p>
@@ -77,11 +109,7 @@ export const PostCard = ({post,avatar}) => {
                 className="p-2 mr-1 rounded-full text-2xl text-primary"
                 title="save">
                     {isBookmarked ? <RiBookmarkFill/> : <RiBookmarkLine/>}
-                </button>
-                <button className="p-2 mr-1 rounded-full text-2xl hover:text-primary"
-                title="delete" onClick={()=>dispatch(deletePost(post?._id))}>
-                    <FiTrash/>
-                </button>
+                </button>              
             </div>           
         </section>
     </article>
