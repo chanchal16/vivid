@@ -1,26 +1,32 @@
 import React,{useState} from 'react'
 import {MdPhoto,MdClose} from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
-import { CLOSE_MODAL,createPost} from './postSlice';
+import { CLOSE_MODAL,createPost, editPost} from './postSlice';
 
 export const PostModal = () => {
     const authState = useSelector(state => state.auth);
     let{user} = authState;
     const postState = useSelector(state => state.post);
-    const{selectedPost,isModalOpen} = postState
+    const{selectedPost,isModalOpen,isEditModeOn} = postState
     const dispatch = useDispatch() 
   // usestates
-    const [postContent,setPostContent] = useState('');
+    const [postContent,setPostContent] = useState('' );
     const [postImg,setPostImg] = useState({})
+    
 
     const createNewPost =async (e)=>{
         e.preventDefault();
+        let token = user?.token
           let postData = {
               content:postContent,
               img:postImg,
               comments:[]
           }
-          dispatch(createPost({token:user?.token,postData}))              
+          if(isEditModeOn){ 
+            dispatch(editPost({token,postId:selectedPost._id,postData}))
+          }else{
+          dispatch(createPost({token,postData}))
+          }              
       setPostContent('') ;
       dispatch(CLOSE_MODAL())   
     }
