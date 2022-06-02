@@ -24,7 +24,7 @@ export const PostComments = ({allComments}) => {
                 <div key={comment._id} className="border-b-2 border-solid border-light py-2 mb-2
                 text-xs flex gap-x-1 rounded">
                     <div className="flex-shrink-0">
-                        <img loading='lazy' className='h-8 w-8 rounded-full flex-shrink-0 mr-2 object-cover' src='https://i.pravatar.cc/300' />
+                        <img loading='lazy' className='h-8 w-8 rounded-full flex-shrink-0 mr-2 object-cover' src={comment?.avatarUrl} />
                     </div>
                     <div className="flex-grow">
                         <Link to=''>{comment.name}</Link>
