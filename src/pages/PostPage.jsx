@@ -16,9 +16,13 @@ export const PostPage = () => {
     const navigate = useNavigate();
     const [comment,setComment] = useState('')
     const dispatch = useDispatch()
+    let {allUsers} = useSelector((state) => state.users);
 
     // set curr post
     const currPost = allPosts?.find(post=>post._id === postId);
+    console.log('cur-post',currPost)
+    // check currUser
+    const currUserProfile = allUsers?.find((user) => user.username === user.username)
 
     const addCommentHandler = (e)=>{
         e.preventDefault()
@@ -64,7 +68,7 @@ export const PostPage = () => {
                         }
 
                         <div className="add-comment z-10 px-0.5 border border-solid border-light relative flex items-center">
-                            <img loading='lazy' className='h-8 w-8 rounded-full flex-shrink-0 mr-2 object-cover' src='https://i.pravatar.cc/300' /> 
+                            <img loading='lazy' className='h-8 w-8 rounded-full flex-shrink-0 mr-2 object-cover' src={currUserProfile?.avatarUrl || currPost?.avatarUrl} /> 
                             <form onSubmit={addCommentHandler}  className="flex flex-grow bg-white">
                                 <input type="text"  onChange={(e)=>setComment(()=>e.target.value)} value={comment}
                                         name="commentText" id="commentText" placeholder={"Comment as "} 
