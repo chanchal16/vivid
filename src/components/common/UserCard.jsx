@@ -1,11 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux';
 
-export const UserCard = ({user,numberOfPosts,close}) => {
-    let {allUsers} = useSelector((state) => state.users);
-     // check currUser
-     const currUserProfile = allUsers?.find((user) => user.username === user.username)
+export const UserCard = ({user,close}) => {   
+     
   return (
     <div className="bg-white p-2 rounded flex gap-x-2 shadow-sm justify-between items-center">
         <div className="flex gap-x-2 flex-grow">
