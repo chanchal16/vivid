@@ -3,13 +3,15 @@ import {NavLink,Link,useNavigate} from 'react-router-dom';
 import { MdOutlineExplore,  MdAddCircleOutline, MdOutlineBookmarkBorder, MdPersonOutline } from 'react-icons/md';
 import {GiStaryu} from "react-icons/gi";
 import {HiOutlineHome} from "react-icons/hi";
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
+import { SHOW_MODAL } from 'features/posts/postSlice';
 
 export const Navbar = () => {
     const authState = useSelector(state => state.auth);
     let{user} = authState;
     const postState = useSelector(state => state.post)
     const {bookmarkList} = postState
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     
   return (
@@ -35,9 +37,9 @@ export const Navbar = () => {
                     </NavLink>
                 </li>              
                     <li>
-                        <NavLink end to="/addpost" className=" link flex items-center" aria-label="Add post">
+                        <span onClick={() => dispatch(SHOW_MODAL())} className=" link flex items-center" aria-label="Add post">
                             <MdAddCircleOutline size='1.5rem' />
-                        </NavLink>
+                        </span>
                     </li>            
                 <li>
                     <NavLink end to="/bookmarks" className=" link flex items-center relative" aria-label="Notifications">
