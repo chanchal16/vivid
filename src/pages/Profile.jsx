@@ -32,7 +32,7 @@ export const Profile = () => {
                 </Link>
                 : null
             }
-            <button className="text-purple-700 hover:text-yellow-500 p-2 text-xs md:text-sm">
+            <button className="text-gray-dark hover:text-pista-dark p-2 text-xs md:text-sm">
                 Logout
             </button>
         </div>
