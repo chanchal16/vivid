@@ -322,6 +322,7 @@ export const deletePostHandler = function (schema, request) {
 			...commentData,
 			username: user.name,
       name:user.name,
+      avatarUrl:user.avatarUrl,
 			createdAt: formatDate(),
 			updatedAt: formatDate(),
 		};
