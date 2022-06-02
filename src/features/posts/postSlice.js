@@ -152,7 +152,7 @@ export const postSlice = createSlice({
       CLOSE_MODAL:(state) =>{
         state.isModalOpen = false
         state.selectedPost = null
-      }      
+      }
     },
     extraReducers: (builder) => {
       builder
