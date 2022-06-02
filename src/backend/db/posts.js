@@ -18,9 +18,9 @@ export const posts = [
     },
     postImg:{},
     comments:[],
-    username: "adarshbalika",
-    name:'Adarsh Balika',
-    avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591170324/samples/people/bicycle.jpg',
+    username: "iamjane",
+    name:'Jane Harvey',
+    avatarUrl:'https://i.pravatar.cc/150?img=45',
     createdAt: formatDate(),
     updatedAt: '2022-05-14T16:42:09+05:30',
   },
@@ -30,7 +30,7 @@ export const posts = [
       "",
     postImg:{
       original_filename:'',
-      url:'https://i.picsum.photos/id/1011/5472/3648.jpg?hmac=Koo9845x2akkVzVFX3xxAc9BCkeGYA9VRVfLE4f0Zzk'
+      url:'https://i.picsum.photos/id/1043/5184/3456.jpg?hmac=wsz2e0aFKEI0ij7mauIr2nFz2pzC8xNlgDHWHYi9qbc'
     },
     likes: {
       likeCount: 2,
@@ -59,6 +59,25 @@ export const posts = [
     avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591170323/samples/people/boy-snow-hoodie.jpg',
     createdAt: formatDate(),
     updatedAt: formatDate(),
+  },
+  {
+    _id:uuid(),
+    content:'',
+    postImg:{
+      original_filename:'',
+      url:'https://cdn.guff.com/site_0/media/32000/31846/items/99ed5114f66c36899fe7b0ce.jpg',
+    },
+    likes:{
+      likeCount:3,
+      likedBy:[],
+      dislikedBy:[],
+    },
+    comments:[],
+    username:'memers_world',
+    name:'memers',
+    avatarUrl:'https://w7.pngwing.com/pngs/434/1003/png-transparent-rage-comic-basketball-player-laughing-white-face-monochrome.png',
+    createdAt: formatDate(),
+    updatedAt: '2022-06-01T16:42:09+05:30'
   },
   {
     _id: uuid(),
@@ -107,9 +126,9 @@ export const posts = [
       dislikedBy: [],
     },
     comments:[],
-    username: "adarshbalika",
-    name:'Adarsh Balika',
-    avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591170324/samples/people/bicycle.jpg',
+    username: "iamjane",
+    name:'Jane Harvey',
+    avatarUrl:'https://i.pravatar.cc/150?img=45',
     createdAt: formatDate(),
     updatedAt: '2022-04-29T16:42:09+05:30',
   },
