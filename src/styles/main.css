@@ -32,7 +32,8 @@ main{
 }
 .link{
     padding: 0.25rem;
-        border-radius: 50%;
+    border-radius: 50%;
+    cursor: pointer;
 }
 .link:hover{   
     background-color: #d1e3ca;
