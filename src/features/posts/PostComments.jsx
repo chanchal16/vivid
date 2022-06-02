@@ -37,7 +37,7 @@ export const PostComments = ({allComments}) => {
                         ?                   
                         <div className="delete-button-wrapper">
                             <button onClick={() => deleteComment(comment)} className="mt-1 mr-1" aria-label="delete comment" title="delete comment">
-                                <FaRegTrashAlt className="text-red-500"  />
+                                <FaRegTrashAlt className="text-red hover:text-red-dark"  />
                             </button>
                         </div>
                          : null
