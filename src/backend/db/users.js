@@ -10,7 +10,7 @@ export const users = [
     _id: uuid(),
     name: "Tester",
     username:'tester',
-    avatarUrl:'https://avatars.dicebear.com/api/male/12.svg',
+    avatarUrl:'https://joeschmoe.io/api/v1/male/jana',
     email: "testing@test.com",
     password: "test123",
     bio:'This is a guest account, anyone can use it.',
@@ -58,7 +58,7 @@ export const users = [
         avatarUrl:'https://i.pravatar.cc/150?img=45',
       }
     ],
-    createdAt: formatDate(),
+    createdAt: '2022-05-16T16:42:09+05:30',
     updatedAt: formatDate(),
   },
   {
@@ -74,7 +74,7 @@ export const users = [
       {
         name: "Tester",
         username:'tester',
-        avatarUrl:'https://avatars.dicebear.com/api/male/12.svg',
+        avatarUrl:'https://joeschmoe.io/api/v1/male/jana',
       },
       {
         name: "Sonam Gupta",
@@ -102,7 +102,7 @@ export const users = [
       {
         name: "Tester",
         username:'tester',
-        avatarUrl:'https://avatars.dicebear.com/api/male/12.svg',
+        avatarUrl:'https://joeschmoe.io/api/v1/male/jana',
       },
       {
         name: "John Smith",
@@ -116,7 +116,7 @@ export const users = [
         avatarUrl:'https://pbs.twimg.com/media/Erbs_ZOXAAAXSFK?format=jpg&name=900x900'
       },
     ],
-    createdAt: formatDate(),
+    createdAt:'2022-05-01T16:42:09+05:30' ,
     updatedAt: formatDate(),
   },
   {
@@ -133,10 +133,10 @@ export const users = [
       {
         name: "Tester",
         username:'tester',
-        avatarUrl:'https://avatars.dicebear.com/api/male/12.svg',
+        avatarUrl:'https://joeschmoe.io/api/v1/male/jana',
       },
     ],
-    createdAt: formatDate(),
+    createdAt: '2022-04-29T16:42:09+05:30',
     updatedAt: formatDate(),
   },
   {
@@ -164,7 +164,7 @@ export const users = [
       {
         name: "Tester",
         username:'tester',
-        avatarUrl:'https://avatars.dicebear.com/api/male/12.svg',
+        avatarUrl:'https://joeschmoe.io/api/v1/male/jana',
       },
     ],
     createdAt: formatDate(),
