@@ -10,7 +10,7 @@ export const users = [
     _id: uuid(),
     name: "Tester",
     username:'tester',
-    avatarUrl:'https://joeschmoe.io/api/v1/male/jana',
+    avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591170323/samples/people/boy-snow-hoodie.jpg',
     email: "testing@test.com",
     password: "test123",
     bio:'This is a guest account, anyone can use it.',
@@ -74,7 +74,7 @@ export const users = [
       {
         name: "Tester",
         username:'tester',
-        avatarUrl:'https://joeschmoe.io/api/v1/male/jana',
+        avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591170323/samples/people/boy-snow-hoodie.jpg',
       },
       {
         name: "Sonam Gupta",
@@ -102,7 +102,7 @@ export const users = [
       {
         name: "Tester",
         username:'tester',
-        avatarUrl:'https://joeschmoe.io/api/v1/male/jana',
+        avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591170323/samples/people/boy-snow-hoodie.jpg',
       },
       {
         name: "John Smith",
@@ -133,7 +133,7 @@ export const users = [
       {
         name: "Tester",
         username:'tester',
-        avatarUrl:'https://joeschmoe.io/api/v1/male/jana',
+        avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591170323/samples/people/boy-snow-hoodie.jpg',
       },
     ],
     createdAt: '2022-04-29T16:42:09+05:30',
@@ -164,7 +164,7 @@ export const users = [
       {
         name: "Tester",
         username:'tester',
-        avatarUrl:'https://joeschmoe.io/api/v1/male/jana',
+        avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591170323/samples/people/boy-snow-hoodie.jpg',
       },
     ],
     createdAt: formatDate(),
