@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CLOSE_MODAL,createPost, editPost} from './postSlice';
 import Picker from "emoji-picker-react";
 
-export const PostModal = ({showEmojiContainer,setShowEmojiContainer}) => {
+const PostModal = ({showEmojiContainer,setShowEmojiContainer}) => {
     const authState = useSelector(state => state.auth);
     let{user} = authState;
     const postState = useSelector(state => state.post);
@@ -99,3 +99,4 @@ export const PostModal = ({showEmojiContainer,setShowEmojiContainer}) => {
     </div>)
   )
 }
+export default PostModal
