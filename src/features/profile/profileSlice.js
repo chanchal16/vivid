@@ -124,7 +124,7 @@ const profileSlice = createSlice({
 			const{user,followUser} = action.payload
 			state.allUsers = state.allUsers.map(curruser=>curruser.username === user.username ? user :
 				curruser.username === followUser.username ? followUser : curruser)
-			state.userProfileToShow = action.payload.followUser;
+			state.userProfileToShow = action.payload.followUser;			
 		})
 		.addCase(followUser.rejected,(state)=>{
 			state.profileStatus = 'Rejected'
@@ -133,9 +133,8 @@ const profileSlice = createSlice({
 			state.profileStatus = 'Fulfilled'
 			const{user,followUser} = action.payload
 			state.allUsers = state.allUsers.map(curruser=>curruser.username === user.username ? user :
-				curruser.username === followUser.username ? followUser : curruser)
-			
-			state.userProfileToShow = action.payload.followUser;
+				curruser.username === followUser.username ? followUser : curruser)			
+			state.userProfileToShow = action.payload.followUser;			
 		})		
 	  }
 });
