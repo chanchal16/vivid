@@ -3,6 +3,7 @@ import React,{useEffect} from 'react'
 import { useSelector,useDispatch } from 'react-redux';
 import { checkCurrentUser } from 'utils/check-if-exists';
 import { getAllUsers } from './profileSlice';
+import { ImSpinner8 } from 'react-icons/im';
 
 const SuggestedUsers = () => {
     let {profileStatus,allUsers} = useSelector((state) => state.users);
@@ -19,7 +20,7 @@ const SuggestedUsers = () => {
         && curruser.username !== user?.user?.username).slice(0,3)
     
   return (
-    <section className="p-4 flex flex-col">
+    <section className="sticky top-0 p-4 flex flex-col">
         <h4 className="text-lg font-semibold mb-2 text-gray">Suggested Users</h4>
             {
                 profileStatus === "Loading"
