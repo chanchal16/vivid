@@ -1,5 +1,5 @@
 # vivid
- A social media app using react
+ A social media app with all basic features implemented using react
 
 ## Demo
 
@@ -12,11 +12,11 @@ https://user-images.githubusercontent.com/56486295/170035258-e06d7a7d-e494-440c-
 **User/Home Feed**:
 
 - User will able to see all his posts and post of the people he/she follow.
-- Feed can be sort based on `recent` and `trending` posts.
+- Feed can be sort based on `recent`,`older` and `trending` posts.
 
 **Explore Feed**
 
-- All the new users posts will be shown over here.
+- All the users posts will be shown over here.
 
 **Post**
 
@@ -26,13 +26,13 @@ https://user-images.githubusercontent.com/56486295/170035258-e06d7a7d-e494-440c-
 
 **Profile**
 
-- User can view there profile or any other users profile.
-- Each user can edit there profile.
-- From someones profile logged in user can follow there following or follower users.
+- User can view their profile or any other user's profile.
+- Each user can edit their profile.
+- Logged In user can follow/unfollow a user by visiting on their profile.
 
 **Authentication**
 
-- Vivid has login, signup and logout feature.
+- Login, signup and logout feature.
 - A new user can also login using test credentials.
 
 
