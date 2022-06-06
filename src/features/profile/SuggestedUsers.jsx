@@ -4,7 +4,7 @@ import { useSelector,useDispatch } from 'react-redux';
 import { checkCurrentUser } from 'utils/check-if-exists';
 import { getAllUsers } from './profileSlice';
 
-export const SuggestedUsers = () => {
+const SuggestedUsers = () => {
     let {profileStatus,allUsers} = useSelector((state) => state.users);
     const authState = useSelector(state => state.auth);
     let{user} = authState;
@@ -36,7 +36,7 @@ export const SuggestedUsers = () => {
                     {
                         suggestedUsers.map(contributor => {
                             return(
-                                <div className="mb-2" >
+                                <div className="mb-2" key={contributor.username}>
                                     <UserCard user={contributor}  /> 
                                 </div>
                             )
@@ -52,3 +52,4 @@ export const SuggestedUsers = () => {
     </section>
   )
 }
+export default SuggestedUsers
