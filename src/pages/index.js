@@ -5,3 +5,4 @@ export {Profile} from './Profile'
 export {Explore} from './Explore';
 export {Bookmarks} from './Bookmarks';
 export {PostPage} from './PostPage';
+export {PageNotFound} from './PageNotFound';
