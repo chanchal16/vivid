@@ -1,6 +1,6 @@
 import { RequireAuth } from 'components/common/RequireAuth';
 import { EditProfile } from 'features/profile/EditProfile';
-import {Bookmarks, Feed, Profile,PostPage,Login,SignUp, Explore} from './pages';
+import {Bookmarks, Feed, Profile,PostPage,Login,SignUp, Explore, PageNotFound} from './pages';
 import Mockman from 'mockman-js';
 
 const ROUTES = [
@@ -41,6 +41,10 @@ const ROUTES = [
                 element:<Explore/>
             }
         ]
+    },
+    {
+        path:'*',
+        element:<PageNotFound/>
     },
     {
         path:'mock',
