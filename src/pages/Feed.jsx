@@ -1,39 +1,40 @@
+import {Suspense} from 'react'
 import { getPosts,SHOW_MODAL, SORT_POST_TYPE } from 'features/posts/postSlice';
-import { SuggestedUsers } from 'features/profile/SuggestedUsers';
 import React,{useEffect,useCallback,useRef} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserFeed,sortPosts } from 'utils';
 import { PostCard } from '../components/common/PostCard';
+const SuggestedUsers = React.lazy(()=>import('features/profile/SuggestedUsers'));
 
 export const Feed = ({setShowEmojiContainer}) => {
   const authState = useSelector(state=>state.auth);
   let {user} = authState
-    const postState = useSelector(state => state.post);
-    let {sortPostType} = postState
-    const dispatch = useDispatch() 
-    const userFeed = getUserFeed(postState?.allPosts,user?.user?.following,user?.user?.username).slice().reverse()
-    const sortedPosts = sortPosts(userFeed,sortPostType)
-    const mountedRef = useRef(true)
+  const postState = useSelector(state => state.post);
+  let {sortPostType} = postState
+  const dispatch = useDispatch() 
+  const userFeed = getUserFeed(postState?.allPosts,user?.user?.following,user?.user?.username).slice().reverse()
+  const sortedPosts = sortPosts(userFeed,sortPostType)
+  const mountedRef = useRef(true)
 
-    const getAllPosts= useCallback(
-      () => {
-        if(!mountedRef.current) return null
-        dispatch(getPosts())
-      },
-      [mountedRef],
-    )
+  const getAllPosts= useCallback(
+    () => {
+      if(!mountedRef.current) return null
+      dispatch(getPosts())
+    },
+    [mountedRef],
+  )
     
-    useEffect(() => {
-       getAllPosts()
-        return(()=>{
-          mountedRef.current = false
-          setShowEmojiContainer(false)
-        })
-    }, [])
+  useEffect(() => {
+      getAllPosts()
+      return(()=>{
+        mountedRef.current = false
+        // setShowEmojiContainer(false)
+      })
+  }, [])
 
-    const sortClickHandler = (type)=>{
-      dispatch(SORT_POST_TYPE(type))
-    }
+  const sortClickHandler = (type)=>{
+    dispatch(SORT_POST_TYPE(type))
+  }
     
   return (
     <div className='grid grid-cols-6 gap-x-4 lg:gap-x-8 w-full my-4'>
@@ -71,7 +72,9 @@ export const Feed = ({setShowEmojiContainer}) => {
             }
         </div>
         <div className="col-span-6 md:col-span-2">
-          <SuggestedUsers/>
+          <Suspense fallback={<div></div>}>
+            <SuggestedUsers/>
+          </Suspense>
         </div>
     </div>
   )
