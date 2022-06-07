@@ -3,6 +3,7 @@ import {Link,useNavigate} from 'react-router-dom'
 import { SignupUser } from '../services/auth-services';
 import { useDispatch } from 'react-redux';
 import { FAILURE, SIGNUP } from 'features/authentication/authSlice';
+import { toast } from "react-toastify";
 
 export const SignUp = () => {
     const navigate= useNavigate()
@@ -19,10 +20,12 @@ export const SignUp = () => {
                 user:data.createdUser
             }
             localStorage.setItem('user',JSON.stringify(user));
-            authDispatch(SIGNUP(user))
+            authDispatch(SIGNUP(user));
+            toast.success('Signed Up successfully!')
         }catch(err){
             console.error(err)
-            authDispatch(FAILURE(err))
+            authDispatch(FAILURE(err));
+            toast.error("Can't sign up, please try again")
         }      
     }
     // handle sign up

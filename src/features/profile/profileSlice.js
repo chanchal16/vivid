@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { toast } from "react-toastify";
 
 // get all users
 export const getAllUsers = createAsyncThunk(
@@ -29,9 +30,11 @@ export const updateUser = createAsyncThunk(
 		try {
 			const {data} = await axios.post(`/api/users/edit`,{userData}, 
             {headers:{authorization:token}});
+			toast.success('User profile updated!')
 			return data.user;
 		} catch (err) {
-			console.error(err)
+			console.error(err);
+			toast.error("Error while updating user")
 		}
 	}
 );
@@ -53,7 +56,9 @@ export const followUser = createAsyncThunk("users/followUser",async({token,userI
 		const {data} = await axios.post(`/api/users/follow/${userId}`,{},
 		{headers:{authorization:token}})
 		return data
-	}catch(err){console.error(err)}
+	}catch(err){
+		console.error(err);
+	}
 })
 // unfollow user
 export const unFollowUser = createAsyncThunk("users/unFollowUser",async({token,userId})=>{

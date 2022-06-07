@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, } from '@reduxjs/toolkit'
 import axios from 'axios';
+import { toast } from "react-toastify";
 
 const initialState = {
   allPosts:[],
@@ -26,9 +27,11 @@ export const createPost = createAsyncThunk("posts/createPost", async ({token,pos
         {
             headers:{authorization:token}
         })
-			return data.posts;
+    toast.success('Post created successfully!')
+		return data.posts;
   } catch (err) {
     console.log(err);
+    toast.error("Can't add post:-(")
   }
 });
 // edit post
@@ -36,8 +39,12 @@ export const editPost = createAsyncThunk("posts/editPost", async({token,postId,p
   try{
     const {data} = await axios.post(`/api/posts/edit/${postId}`,{postData},
     {headers:{authorization:token}})
+    toast.success('Post updated successfully!')
     return data.posts;
-  }catch(err){console.error(err)}
+  }catch(err){
+    console.error(err);
+    toast.error("Can't update post:-(")
+  }
 })
 // delete post
 export const deletePost = createAsyncThunk(
@@ -46,9 +53,11 @@ export const deletePost = createAsyncThunk(
     try {
       const { data } = await axios.delete(`/api/posts/${postId}`,
       {headers:{authorization:token}});
+      toast.success('Post deleted!')
       return data.posts;
     } catch (err) {
       console.log(err);
+      toast.error("Can't delete post:-(")
     }
   }
 );
@@ -83,7 +92,8 @@ export const getBookmarks = createAsyncThunk("posts/getBookmarks",async({token})
     {headers:{authorization:token}});
     return data.bookmarks
   }catch(err){   
-    console.error(err)
+    console.error(err);
+    toast.warn("Can't get bookmarks")
   }
 })
 // bookmark a post
@@ -91,9 +101,11 @@ export const addToBookmarks = createAsyncThunk("posts/addToBookmarks",async({tok
   try{
     const {data} = await axios.post(`/api/users/bookmark/${postId}`,{},
     {headers:{authorization:token}});
+    toast.success('Post bookmarked successfully!')
     return data.bookmarks
   }catch(err){
     console.error(err)
+    toast.error("Can't bookmark post:-(")
   }
 })
 // remove from bookmark
@@ -101,9 +113,11 @@ export const removeFromBookmarks = createAsyncThunk("posts/removeFromBookmarks",
   try{
     const {data} = await axios.post(`/api/users/remove-bookmark/${postId}`,{},
     {headers:{authorization:token}});
+    toast.success('Post removed successfully!')
     return data.bookmarks
   }catch(err){
-    console.error(err)
+    console.error(err);
+    toast.error("Can't remove post:-(")
   }
 })
 // comments
@@ -121,9 +135,11 @@ export const addComment = createAsyncThunk("posts/addComment",async({token,postI
   try{
     const {data} = await axios.post(`/api/comments/add/${postId}`,{commentData},
     {headers:{authorization:token}});
+    toast.success('comment added')
     return data.posts
   }catch(err){
     console.error(err)
+    toast.error("Can't add comment")
   }
 })
 // delete a comment
@@ -131,9 +147,11 @@ export const removeComment = createAsyncThunk("posts/removeComment",async({token
   try{
     const {data} = await axios.post(`/api/comments/delete/${postId}/${commentId}`,{},
     {headers:{authorization:token}});
+    toast.success('comment deleted!')
     return data.posts
   }catch(err){
     console.error(err)
+    toast.error("Can't delete a comment:-(")
   }
 })
 

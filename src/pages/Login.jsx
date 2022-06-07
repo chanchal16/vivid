@@ -3,6 +3,7 @@ import React,{useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import {Link,useNavigate,useLocation,Navigate} from 'react-router-dom'
 import { LoginUser } from '../services/auth-services';
+import { toast } from "react-toastify";
 
 export const Login = () => {
     const [loginForm, setLoginForm] = useState({
@@ -24,12 +25,14 @@ export const Login = () => {
                 user:data.foundUser
             }
             localStorage.setItem('user',JSON.stringify(user));
-            authDispatch(LOGIN(user))
+            authDispatch(LOGIN(user));
+            toast.success('Logged In successfully!')
             // navigate('/')
         }
         catch(err){
             console.error(err)
             authDispatch(FAILURE(err))
+            toast.error("Can't login,please try again")
         }       
     }
     // handle guest login
