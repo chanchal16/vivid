@@ -57,46 +57,48 @@ const PostModal = ({showEmojiContainer,setShowEmojiContainer}) => {
       setPostImg('')
       dispatch(CLOSE_MODAL())   
     }
-    
+   
   return (
-    isModalOpen && (<div className="absolute top-0 left-0 h-screen w-full backdrop-blur-sm mt-[8vh] z-10 flex justify-center">
-    <div className="addpost m-16 max-w-full w-[32rem]">
-        <div className="flex justify-between">
-          <h2 className="text-xl p-1 text-gray-dark">Share your vivid thoughts!</h2>
-          <button className="px-3" onClick={() => dispatch(CLOSE_MODAL())}>
-            <MdClose size="1.5rem" />
-          </button>
-        </div>
-        <form onSubmit={submitPostHandler}>
-            <textarea name="postContent" onChange={(e)=>setPostContent(e.target.value)} value={postContent || selectedPost?.content} 
-            id="post_content" placeholder="What's on your mind?" rows="3" className='w-full'></textarea>
+    isModalOpen && (
+    <section className="overflow-y-auto overflow-x-hidden fixed top-0 left-0 right-0 bottom-0 z-30">
+      <div onClick={()=>dispatch(CLOSE_MODAL())} className="modal_backdrop"></div>
+      <div className="my-16 mx-auto bg-white relative w-11/12 max-w-[28rem] max-h-[500px] min-h-[200px] z-20 flex flex-col p-4 rounded-lg">
+          <div className="flex justify-between">
+            <h2 className="text-lg p-1 text-gray-dark">Share your vivid thoughts!</h2>
+            <button className="px-3" onClick={() => dispatch(CLOSE_MODAL())}>
+              <MdClose size="1.5rem" />
+            </button>
+          </div>
+          <form onSubmit={submitPostHandler}>
+              <textarea name="postContent" onChange={(e)=>setPostContent(e.target.value)} value={postContent || selectedPost?.content} 
+              id="post_content" placeholder="What's on your mind?" rows="3" className='w-full'></textarea>
 
-            <div className="flex justify-between items-center mt-4">
-              <div className='flex'>
-                <label className="post-btn-upload flex items-center cursor-pointer" >
-                    <MdPhoto className="text-3xl text-gray-dark hover:text-primary" title={"Upload Image"} />
-                    <input type="file" name="postImage" id="post-image" className="hidden" onChange={uploadImage} />
-                        <small className="text-gray-400 text-xs">{postImg.original_filename?.length > 20 ? postImg?.original_filename.substring(0,20)+"...": postImg?.original_filename}</small>
-                </label>
-                <span className='px-3 cursor-pointer' onClick={()=>setShowEmojiContainer(prev=>!prev)}>
-                  <MdOutlineEmojiEmotions className="text-3xl text-gray-dark hover:text-primary" title='add emoji'/>
-                </span>
-              </div> 
-                <button type="submit" className="bg-primary p-1 rounded hover:bg-primary-dark">
-                    {selectedPost ? 'update' : 'add'}
-                </button>
-                
-            </div>
-            {showEmojiContainer && 
-                <Picker 
-                pickerStyle={{ height: "200px", margin: "0.5rem" }}
-                disableSearchBar={true}
-                onEmojiClick={onEmojiClick}
-                disableAutoFocus={true}
-                native />}
-        </form>
-    </div>
-    </div>)
+              <div className="flex justify-between items-center mt-4">
+                <div className='flex'>
+                  <label className="post-btn-upload flex items-center cursor-pointer" >
+                      <MdPhoto className="text-3xl text-gray-dark hover:text-primary" title={"Upload Image"} />
+                      <input type="file" name="postImage" id="post-image" className="hidden" onChange={uploadImage} />
+                          <small className="text-gray-400 text-xs">{postImg.original_filename?.length > 20 ? postImg?.original_filename.substring(0,20)+"...": postImg?.original_filename}</small>
+                  </label>
+                  <span className='px-3 cursor-pointer' onClick={()=>setShowEmojiContainer(prev=>!prev)}>
+                    <MdOutlineEmojiEmotions className="text-3xl text-gray-dark hover:text-primary" title='add emoji'/>
+                  </span>
+                </div> 
+                  <button type="submit" disabled={postContent ===''||postImg==={}?'disabled':''} className={`bg-primary py-1 px-3 rounded hover:bg-primary-dark ${postContent ==='' || postImg==={} ?'cursor-no-drop hover:opacity-50' :''} `}>
+                      {selectedPost ? 'update' : 'add'}
+                  </button>
+                  
+              </div>
+              {showEmojiContainer && 
+                  <Picker 
+                  pickerStyle={{ height: "200px", margin: "0.5rem" }}
+                  disableSearchBar={true}
+                  onEmojiClick={onEmojiClick}
+                  disableAutoFocus={true}
+                  native />}
+          </form>
+      </div>
+    </section>)
   )
 }
 export default PostModal
