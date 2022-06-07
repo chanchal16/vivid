@@ -4,15 +4,13 @@ import React,{useEffect,useCallback,useRef} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserFeed,sortPosts } from 'utils';
 import { PostCard } from '../components/common/PostCard';
-import { userFollowing } from 'features/authentication/authSlice';
 const SuggestedUsers = React.lazy(()=>import('features/profile/SuggestedUsers'));
 
 export const Feed = ({setShowEmojiContainer}) => {
-  console.log('follwoing usr',userFollowing)
   const {user} = useSelector(state=>state.auth);
   const {sortPostType,allPosts} = useSelector(state => state.post);
   const dispatch = useDispatch() 
-  const userFeed = getUserFeed(allPosts,userFollowing?.following,user?.user?.username).slice().reverse()
+  const userFeed = getUserFeed(allPosts,user?.user?.following,user?.user?.username).slice().reverse()
   const sortedPosts = sortPosts(userFeed,sortPostType)
   const mountedRef = useRef(true)
 
