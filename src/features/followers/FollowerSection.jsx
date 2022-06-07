@@ -52,7 +52,7 @@ export const FollowerSection = ({username}) => {
                     followers?.length > 0 ?
                     followers.slice(0, 4).map(follower => {
                         return(
-                            <Link to={`/profile/${follower.username}`} key={follower._id} title={follower.username}>
+                            <Link to={`/profile/${follower.username}`} key={follower.username} title={follower.username}>
                                 <img className="w-12 h-12 rounded-full" src={follower.avatarUrl} />
                             </Link>
                         )
@@ -82,7 +82,7 @@ export const FollowerSection = ({username}) => {
                     following?.length > 0 ?
                     following?.slice(0, 4).map(following => {
                         return(
-                            <Link to={`/profile/${following.username}`} key={following._id} title={following.username}>
+                            <Link to={`/profile/${following.username}`} key={following.username} title={following.username}>
                                 <img className="w-12 h-12 rounded-full" key={following._id}  src={following.avatarUrl} />
                             </Link>
                         )
