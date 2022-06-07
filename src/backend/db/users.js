@@ -10,7 +10,7 @@ export const users = [
     _id: uuid(),
     name: "Tester",
     username:'tester',
-    avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591170323/samples/people/boy-snow-hoodie.jpg',
+    avatarUrl:'https://joeschmoe.io/api/v1/jon',
     email: "testing@test.com",
     password: "test123",
     bio:'This is a guest account, anyone can use it.',
@@ -22,7 +22,6 @@ export const users = [
         avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591779540/uzo2kczlerzdc8t9abin.jpg',
       },
       {
-        _id:uuid(),
         name:'Akash Gupta',
         username:'itsakash',
         avatarUrl:'https://i.pravatar.cc/150?img=60'
@@ -47,7 +46,6 @@ export const users = [
         avatarUrl:'https://pbs.twimg.com/profile_images/1251244594966040576/v-b1F6AM_400x400.jpg',
       },
       {
-        _id:uuid(),
         name:'Raju',
         username:'rajuu',
         avatarUrl:'https://pbs.twimg.com/media/Erbs_ZOXAAAXSFK?format=jpg&name=900x900'
@@ -74,7 +72,7 @@ export const users = [
       {
         name: "Tester",
         username:'tester',
-        avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591170323/samples/people/boy-snow-hoodie.jpg',
+        avatarUrl:'https://joeschmoe.io/api/v1/jon',
       },
       {
         name: "Sonam Gupta",
@@ -87,11 +85,10 @@ export const users = [
         avatarUrl:'https://pbs.twimg.com/profile_images/1251244594966040576/v-b1F6AM_400x400.jpg',
       },
       {
-        _id:uuid(),
-        name:'Peter Parker',
-        username:'thepeterparker',
-        avatarUrl:''
-      }
+        name:'Akash Gupta',
+        username:'itsakash',
+        avatarUrl:'https://i.pravatar.cc/150?img=60'
+      },
     ],
     following:[
       {
@@ -102,15 +99,9 @@ export const users = [
       {
         name: "Tester",
         username:'tester',
-        avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591170323/samples/people/boy-snow-hoodie.jpg',
+        avatarUrl:'https://joeschmoe.io/api/v1/jon',
       },
       {
-        name: "John Smith",
-        username:'jonny',
-        avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591170323/samples/people/boy-snow-hoodie.jpg',
-      },
-      {
-        _id:uuid(),
         name:'Raju',
         username:'rajuu',
         avatarUrl:'https://pbs.twimg.com/media/Erbs_ZOXAAAXSFK?format=jpg&name=900x900'
@@ -133,7 +124,7 @@ export const users = [
       {
         name: "Tester",
         username:'tester',
-        avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591170323/samples/people/boy-snow-hoodie.jpg',
+        avatarUrl:'https://joeschmoe.io/api/v1/jon',
       },
     ],
     createdAt: '2022-04-29T16:42:09+05:30',
@@ -164,7 +155,7 @@ export const users = [
       {
         name: "Tester",
         username:'tester',
-        avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591170323/samples/people/boy-snow-hoodie.jpg',
+        avatarUrl:'https://joeschmoe.io/api/v1/jon',
       },
     ],
     createdAt: formatDate(),
@@ -179,13 +170,7 @@ export const users = [
     password: "john#9090",
     bio:'I am the fourth user',
     bookmarks:[],
-    followers:[
-      {
-        name: "Chanchal Rajput",
-        username:'chanchal_16',
-        avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591779540/uzo2kczlerzdc8t9abin.jpg',
-      },
-    ],
+    followers:[],
     following:[],
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -210,4 +195,54 @@ export const users = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
+  {
+    _id:uuid(),
+    name:'Akash Gupta',
+    username:'itsakash',
+    avatarUrl:'https://i.pravatar.cc/150?img=60',
+    email:'akash@yahoo.com',
+    password:'@kash00',
+    bio:'I am student learning web development @neogcamp!',
+    bookmarks:[],
+    followers:[],
+    following:[
+      {
+        name: "Tester",
+        username:'tester',
+        avatarUrl:'https://joeschmoe.io/api/v1/jon',
+      },
+      {
+        name: "Chanchal Rajput",
+        username:'chanchal_16',
+        avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591779540/uzo2kczlerzdc8t9abin.jpg',
+      },
+    ],
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id:uuid(),
+    name:'Raju',
+    username:'rajuu',
+    avatarUrl:'https://pbs.twimg.com/media/Erbs_ZOXAAAXSFK?format=jpg&name=900x900',
+    email:'raju@topi.com',
+    password:'raju@420',
+    bio:'Mein Raju, mere paas ek scheme hai,25din me paisa double',
+    bookmarks:[],
+    followers:[
+      {
+        name: "Chanchal Rajput",
+        username:'chanchal_16',
+        avatarUrl:'https://res.cloudinary.com/cr07/image/upload/v1591779540/uzo2kczlerzdc8t9abin.jpg',
+      },
+      {
+        name: "Tester",
+        username:'tester',
+        avatarUrl:'https://joeschmoe.io/api/v1/jon',
+      },
+    ],
+    following:[],
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  }
 ];
