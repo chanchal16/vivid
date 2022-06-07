@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect,useState,Suspense} from 'react'
 import {useNavigate, useParams} from 'react-router-dom';
 import {MdKeyboardArrowLeft} from 'react-icons/md';
 import {ImSpinner8} from 'react-icons/im';
@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {PostCard} from '../components/common/PostCard'
 import { PostComments } from 'features/posts/PostComments';
 import { addComment } from 'features/posts/postSlice';
+const SuggestedUsers = React.lazy(()=>import('features/profile/SuggestedUsers'));
 
 export const PostPage = () => {
     const authState = useSelector(state => state.auth);
@@ -83,7 +84,10 @@ export const PostPage = () => {
                 }                
             </div>
 
-            <div className="col-span-5 md:col-span-2 mt-4">               
+            <div className="col-span-5 md:col-span-2 mt-4">
+                <Suspense fallback={<div></div>}>
+                    <SuggestedUsers/>
+                </Suspense>               
             </div>
         </div>
     </section>
