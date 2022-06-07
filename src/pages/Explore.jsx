@@ -1,7 +1,8 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,Suspense} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPosts } from 'features/posts/postSlice';
 import { PostCard } from '../components/common/PostCard';
+const SuggestedUsers = React.lazy(()=>import('features/profile/SuggestedUsers'));
 
 export const Explore = () => {
     const postState = useSelector(state => state.post);
@@ -20,6 +21,9 @@ export const Explore = () => {
             }
         </div>
         <div className="col-span-6 md:col-span-2">
+            <Suspense fallback={<div></div>}>
+                <SuggestedUsers/>
+            </Suspense>
         </div>
     </section>
   )
