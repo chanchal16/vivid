@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { MdClose, MdAdd } from 'react-icons/md';
-import { UserCard } from 'components/common/UserCard';
+import { MdClose } from 'react-icons/md';
 
 export const FollowerListPopup = ({ followerPopupData, closePopup }) => {
   return (
@@ -18,7 +17,21 @@ export const FollowerListPopup = ({ followerPopupData, closePopup }) => {
                         <li key={profile._id} className="my-2 border border-light  shadow-sm p-1">
                             {
                                 followerPopupData.listType === "Followers" ?                               
-                                <UserCard User={profile} close={closePopup}/>
+                                <div className="flex gap-x-2 justify-between items-center">
+                                    <div className="flex gap-x-2">
+                                        <Link to={"/profile/"+profile.username} onClick={closePopup} >
+                                            <img className="w-14 h-14 rounded-full" src={profile.avatarUrl} />
+                                        </Link>
+                                        
+                                        <div className="flex flex-col">
+                                            <Link to={"/profile/"+profile.username} onClick={closePopup}
+                                            className='text-primary-dark hover:text-pista-dark'>
+                                                <h3>{profile.name}</h3>
+                                            </Link>
+                                            <small className="text-gray-dark px-1">{profile.username}</small>
+                                        </div>
+                                    </div>
+                                </div>
                                 : 
                                 <div className="flex gap-x-2 justify-between items-center">
                                     <div className="flex gap-x-2">
@@ -39,8 +52,7 @@ export const FollowerListPopup = ({ followerPopupData, closePopup }) => {
                         </li>
                     )
                 })
-            }
-            
+            }            
         </ul>
 
         <button type="button" className="rounded flex justify-center items-center 
