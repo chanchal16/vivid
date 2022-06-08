@@ -37,34 +37,37 @@ export const SignUp = () => {
 
   return (
     <div className="container mx-auto px-1">
-        <form className='max-w-sm my-12 mx-auto p-4 border-2 border-primary 
-        border-solid flex flex-col justify-center items-center gap-4' onSubmit={ handleSubmit}>
-            <h1 className="text-2xl text-primary">Sign Up</h1>
+        <form className='max-w-sm my-12 mx-auto p-4 bg-white rounded-md flex flex-col 
+        justify-center items-center gap-4' onSubmit={ handleSubmit}>
+            <h1 className="text-3xl text-primary font-oleo">Sign Up</h1>
             <div className="flex flex-col text-sm text-gray w-10/12 ">
-                <label>Name</label>
+                <label className='font-oleo'>Name</label>
                 <input type="text" placeholder="enter name" className="p-2 outline outline-1" value={signUpForm.name}
-                onChange={(e)=>setSignUpForm((form)=>({...form,name:e.target.value}))} />
+                onChange={(e)=>setSignUpForm((form)=>({...form,name:e.target.value}))}required/>
             </div>
             <div className="flex flex-col text-sm text-gray w-10/12 ">
-                <label>UserName</label>
+                <label className='font-oleo'>UserName</label>
                 <input type="text" placeholder="enter name" className="p-2 outline outline-1" value={signUpForm.username}
                 onChange={(e)=>setSignUpForm((form)=>({...form,username:e.target.value}))} />
             </div>
             <div className="flex flex-col text-sm text-gray w-10/12 ">
-                <label>Email</label>
+                <label className='font-oleo'>Email</label>
                 <input type="email" placeholder="abc@gmail.com" className="p-2 outline outline-1" value={signUpForm.email}
                 onChange={(e)=>setSignUpForm((form)=>({...form,email:e.target.value}))} />
             </div>
             <div className="flex flex-col text-sm text-gray w-10/12 ">
-                <label>Password</label>
+                <label className='font-oleo'>Password</label>
                 <input type="password" className="p-2 outline outline-1" value={signUpForm.password}
                 onChange={(e)=>setSignUpForm((form)=>({...form,password:e.target.value}))} />
             </div>
-            <button type='submit' className="p-1.5 w-10/12 text-white rounded border-none bg-primary 
+            <button type='submit' className="p-1.5 w-10/12 rounded border-none bg-primary 
             hover:bg-primary-dark" onClick={handleSignUp}>
                 Sign Up
             </button>  
-            <p>Already have an account ?<Link to='/login' className="text-primary-dark">Sign in</Link></p>            
+            <p>Already have an account ?&nbsp;
+                <Link to='/login' className="text-primary-dark hover:text-pista-dark">
+                    Sign in</Link>
+            </p>            
         </form>
     </div>
   )
