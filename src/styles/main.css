@@ -116,3 +116,15 @@ input:focus, textarea:focus, select:focus{
     background-color: #ffedd5;
     cursor: pointer;
 }
+/* animation */
+.loading-icon{
+    animation: rotating 2s linear infinite;
+}
+@keyframes rotating {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
