@@ -6,7 +6,7 @@ import { getAllUsers } from './profileSlice';
 import { ImSpinner8 } from 'react-icons/im';
 
 const SuggestedUsers = () => {
-    let {profileStatus,allUsers} = useSelector((state) => state.users);
+    let {allUsers,suggestedUserStatus} = useSelector((state) => state.users);
     const authState = useSelector(state => state.auth);
     let{user} = authState;
     const dispatch = useDispatch()
@@ -23,15 +23,15 @@ const SuggestedUsers = () => {
     <section className="sticky top-0 p-4 flex flex-col">
         <h4 className="text-lg font-semibold mb-2 text-gray">Suggested Users</h4>
             {
-                profileStatus === "Loading"
+                suggestedUserStatus == "Loading"
                 && 
                 <div className="flex items-center justify-center h-24">
-                    <ImSpinner8 className="loading-icon text-purple-600 text-lg"/>
+                    <ImSpinner8 className="loading-icon text-primary-dark text-2xl"/>
                 </div>
             }
 
             {
-                profileStatus === "Fulfilled"
+                suggestedUserStatus == "Fulfilled"
                 && 
                 <div className="">
                     {
@@ -47,8 +47,8 @@ const SuggestedUsers = () => {
             }
 
             {
-                profileStatus === "Rejected"
-                && <span className="text-sm text-gray-400">Something went wrong. Please refresh!</span>
+                suggestedUserStatus === "Rejected"
+                && <span className="text-sm text-gray">Something went wrong. Please refresh!</span>
             }
     </section>
   )

@@ -4,11 +4,12 @@ import React,{useEffect,useCallback,useRef} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserFeed,sortPosts } from 'utils';
 import { PostCard } from '../components/common/PostCard';
+import {ImSpinner8} from 'react-icons/im';
 const SuggestedUsers = React.lazy(()=>import('features/profile/SuggestedUsers'));
 
 export const Feed = ({setShowEmojiContainer}) => {
   const {user} = useSelector(state=>state.auth);
-  const {sortPostType,allPosts} = useSelector(state => state.post);
+  const {sortPostType,allPosts,feedStatus} = useSelector(state => state.post);
   const dispatch = useDispatch() 
   const userFeed = getUserFeed(allPosts,user?.user?.following,user?.user?.username).slice().reverse()
   const sortedPosts = sortPosts(userFeed,sortPostType)
@@ -64,10 +65,24 @@ export const Feed = ({setShowEmojiContainer}) => {
               </button>              
             </div>
             {
-              sortedPosts?.map(post=>(
-                  <PostCard post={post} key={post?._id}/>
-              ))
-            }
+              feedStatus == 'Loading' ?
+              <div className="flex items-end justify-center h-24">
+                <ImSpinner8 className="loading-icon text-primary-dark text-3xl" />
+              </div>
+              :
+              <div>
+                {
+                  sortPosts.length > 0 ?
+                    sortedPosts?.map(post=>(
+                        <PostCard post={post} key={post?._id}/>
+                    ))
+                  :
+                  <p className="rounded py-4 px-2 mb-6 text-center text-xs text-gray border border-gray">
+                    Your posts and the posts of people you follow will appear here.
+                  </p>
+                }
+              </div>
+            }           
         </div>
         <div className="col-span-6 md:col-span-2">
           <Suspense fallback={<div></div>}>
