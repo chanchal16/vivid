@@ -9,7 +9,8 @@ const initialState = {
   isModalOpen:false,
   selectedPost:null,
   isEditModeOn:false,
-  sortPostType:''
+  sortPostType:'',
+  feedStatus:'Idle'
 }
 // get all posts
 export const getPosts = createAsyncThunk("posts/getPosts", async () => {
@@ -176,14 +177,14 @@ export const postSlice = createSlice({
       builder
       // get post
       .addCase(getPosts.pending,(state) =>{
-        state.status = 'Loading'
+        state.feedStatus = 'Loading'
       })
       .addCase(getPosts.fulfilled,(state,action) =>{
-        state.status = 'Fulfilled';
+        state.feedStatus = 'Fulfilled';
         state.allPosts = action.payload
       })
       .addCase(getPosts.rejected,(state) =>{
-        state.status = 'Rejected'
+        state.feedStatus = 'Rejected'
         console.log(action.error.message)
       })
       // add post
