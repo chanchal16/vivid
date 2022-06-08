@@ -1,6 +1,6 @@
 import React,{useState,Suspense} from 'react'
 import { useRoutes } from "react-router-dom";
-import { Navbar } from "./components/common/Navbar";
+import { Navbar,Footer } from "./components";
 import { ROUTES} from "./routes";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -21,6 +21,7 @@ function App() {
         <PostModal showEmojiContainer={showEmojiContainer} setShowEmojiContainer={setShowEmojiContainer} />
       </Suspense>
       </main>
+      <Footer/>
     </div>
   );
 }
