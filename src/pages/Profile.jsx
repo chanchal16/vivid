@@ -7,6 +7,7 @@ import {MdSettings} from "react-icons/md";
 import { PostCard } from 'components/common/PostCard';
 import { FollowerSection } from 'features/followers/FollowerSection';
 import addpost from 'assets/addpost.svg'
+import { LOGOUT } from 'features/authentication/authSlice';
 
 export const Profile = () => {
     const dispatch = useDispatch();
@@ -23,6 +24,8 @@ export const Profile = () => {
     }, [username,dispatch])
 
     useEffect(() => dispatch(getUserPost( username )), [allPosts]);
+
+    
   return (
     <div className="w-full mb-12">
          <div className="button-group flex-grow flex justify-end gap-x-2 items-end">
@@ -33,7 +36,7 @@ export const Profile = () => {
                 </Link>
                 : null
             }
-            <button className="text-gray-dark hover:text-pista-dark p-2 text-xs md:text-sm">
+            <button className="text-gray-dark hover:text-pista-dark p-2 text-xs md:text-sm" onClick={()=>dispatch(LOGOUT())} >
                 Logout
             </button>
         </div>
