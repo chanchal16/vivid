@@ -57,15 +57,21 @@ const PostModal = ({showEmojiContainer,setShowEmojiContainer}) => {
       setPostImg('')
       dispatch(CLOSE_MODAL())   
     }
+
+    const closeModal = ()=>{
+      dispatch(CLOSE_MODAL())
+      setPostImg({});
+      setPostContent('')
+    }
    
   return (
     isModalOpen && (
     <section className="overflow-y-auto overflow-x-hidden fixed top-0 left-0 right-0 bottom-0 z-30">
-      <div onClick={()=>dispatch(CLOSE_MODAL())} className="modal_backdrop"></div>
+      <div onClick={closeModal} className="modal_backdrop"></div>
       <div className="my-16 mx-auto bg-white relative w-11/12 max-w-[28rem] max-h-[500px] min-h-[200px] z-20 flex flex-col p-4 rounded-lg">
           <div className="flex justify-between">
             <h2 className="text-lg p-1 text-gray-dark">Share your vivid thoughts!</h2>
-            <button className="px-3" onClick={() => dispatch(CLOSE_MODAL())}>
+            <button className="px-3" onClick={() => closeModal()}>
               <MdClose size="1.5rem" />
             </button>
           </div>
