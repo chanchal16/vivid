@@ -101,3 +101,18 @@ input:focus, textarea:focus, select:focus{
     bottom: 0;
     z-index: 1;        
 }
+/* scrollbar */
+::-webkit-scrollbar {
+    width: 0.7rem;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px #f9f5ff;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #ffedd5;
+    cursor: pointer;
+}
