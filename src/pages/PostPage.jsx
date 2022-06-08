@@ -21,7 +21,7 @@ export const PostPage = () => {
 
     // set curr post
     const currPost = allPosts?.find(post=>post._id === postId);
-    console.log('cur-post',currPost)
+
     // check currUser
     const currUserProfile = allUsers?.find((user) => user.username === user.username)
 
