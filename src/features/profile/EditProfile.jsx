@@ -73,7 +73,8 @@ export const EditProfile = () => {
   return (
     <section className="flex flex-col w-full">
         <div className="">
-            <button className="m-2 flex items-center" onClick={()=> navigate(-1)}>
+            <button className="m-2 flex items-center text-primary-dark hover:text-pista-dark" 
+            onClick={()=> navigate(-1)}>
                 <MdKeyboardArrowLeft /> Back
             </button>
         </div>
