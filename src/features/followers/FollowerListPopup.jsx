@@ -18,7 +18,7 @@ export const FollowerListPopup = ({ followerPopupData, closePopup }) => {
                         <li key={profile._id} className="my-2 border border-light  shadow-sm p-1">
                             {
                                 followerPopupData.listType === "Followers" ?                               
-                                <UserCard user={profile} close={closePopup}/>
+                                <UserCard User={profile} close={closePopup}/>
                                 : 
                                 <div className="flex gap-x-2 justify-between items-center">
                                     <div className="flex gap-x-2">
