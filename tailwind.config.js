@@ -14,6 +14,9 @@ module.exports = {
       'red':'#f87171',
       'red-dark':'#ef4444'
     },
+    fontFamily:{
+      oleo:['Oleo Script Swash Caps', 'cursive']
+    },
     extend: {},
   },
   variants: {
