@@ -44,7 +44,7 @@ export const PostPage = () => {
                 {
                     status == "Loading" ?
                     <div className="flex items-center justify-center h-24">
-                        <ImSpinner8 className="loading-icon text-2xl text-purple-600" />
+                        <ImSpinner8 className="loading-icon text-2xl text-primary-dark" />
                     </div>
                     :
                     status == "Rejected" ?
