@@ -51,7 +51,7 @@ export const Login = () => {
         <div className='text-center p-4'>
             <span className='font-oleo text-xl'>share your vivid thoughts and feelings via  <span className='text-primary-dark'>Vivid</span></span>
         </div>
-        <form className='max-w-sm  mx-auto p-4  bg-white  rounded-md flex flex-col
+        <form className='max-w-sm  mx-auto px-2 py-6  bg-white  rounded-md flex flex-col
          justify-center items-center gap-4' onSubmit={ handleSubmit}>
             <h1 className="text-3xl text-primary font-oleo">Log In</h1>         
             <div className="flex flex-col text-sm text-gray w-10/12 ">
