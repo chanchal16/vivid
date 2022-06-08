@@ -35,10 +35,10 @@ const SuggestedUsers = () => {
                 && 
                 <div className="">
                     {
-                        suggestedUsers.map(contributor => {
+                        suggestedUsers.map(user => {
                             return(
-                                <div className="mb-2" key={contributor.username}>
-                                    <UserCard user={contributor}  /> 
+                                <div className="mb-2" key={user.username}>
+                                    <UserCard User={user}  /> 
                                 </div>
                             )
                         })
