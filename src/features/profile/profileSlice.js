@@ -73,7 +73,8 @@ const initialState = {
 	userProfileToShow: {},
 	userPosts: [],
 	allUsers: [],
-    profileStatus:'idle',
+    profileStatus:'Idle',
+	suggestedUserStatus:'Idle'
 };
 
 const profileSlice = createSlice({
@@ -87,13 +88,16 @@ const profileSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder
-		// get user		
+		// get user	
+		.addCase(getUser.pending,(state)=>{
+			state.suggestedUserStatus = 'Loading'
+		})	
 		.addCase(getUser.fulfilled,(state,action) =>{
-		  state.profileStatus = 'Fulfilled';
+		  state.suggestedUserStatus = 'Fulfilled';
 		  state.userProfileToShow = action.payload
 		})
 		.addCase(getUser.rejected,(state) =>{
-		  state.profileStatus = 'Rejected'
+		  state.suggestedUserStatus = 'Rejected'
 		})
 		// get usr post
 		.addCase(getUserPost.pending, (state) =>{
@@ -106,9 +110,15 @@ const profileSlice = createSlice({
 		.addCase(getUserPost.rejected, (state) =>{
 		  state.profileStatus = 'Rejected';
 		})
+		.addCase(getAllUsers.pending,(state)=>{
+			state.suggestedUserStatus = 'Loading'
+		})
 		.addCase(getAllUsers.fulfilled, (state,action) =>{
-			state.profileStatus = 'Fulfilled';
+			state.suggestedUserStatus = 'Fulfilled';
 			state.allUsers = action.payload;
+		})
+		.addCase(getAllUsers.rejected,(state)=>{
+			state.suggestedUserStatus = 'Rejected'
 		})
 		.addCase(updateUser.pending,(state)=>{
 			state.profileStatus = 'Loading'
