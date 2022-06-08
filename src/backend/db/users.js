@@ -119,14 +119,14 @@ export const users = [
     password: "jane@12",
     bio:'I am the second user',
     bookmarks:[],
-    followers:[],
-    following:[
+    followers:[
       {
         name: "Tester",
         username:'tester',
         avatarUrl:'https://joeschmoe.io/api/v1/jon',
       },
     ],
+    following:[],
     createdAt: '2022-04-29T16:42:09+05:30',
     updatedAt: formatDate(),
   },
