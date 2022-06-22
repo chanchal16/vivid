@@ -17,7 +17,7 @@ const SuggestedUsers = () => {
     }, [dispatch]);
 
     const suggestedUsers = allUsers?.filter(curruser=>!checkCurrentUser(currUser?.following,curruser.username)
-        && curruser.username !== user?.user?.username)
+        && curruser.username !== user?.user?.username).slice(0,3)
     
   return (
     <section className="sticky top-0 p-4 flex flex-col">
