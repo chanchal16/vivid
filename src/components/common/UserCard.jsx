@@ -1,21 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { followUser, unFollowUser } from 'features/profile/profileSlice';
+import { followUser } from 'features/profile/profileSlice';
 
 export const UserCard = ({User,close}) => { 
     let {user} = useSelector(state => state.auth);
     let{token} = user
     const dispatch = useDispatch()
-    const isFollowing = user?.user?.following?.includes( User?.username)
 
-    const followUnfollowHandler = (userId)=>{
-        if(isFollowing){
-            dispatch(unFollowUser({token,userId}))
-        }else{
-            dispatch(followUser({token,userId}))
-        }
-    }
   return (
     <div className="bg-white p-2 rounded flex gap-x-2 shadow-sm justify-between items-center">
         <div className="flex gap-x-2 flex-grow">
@@ -34,10 +26,12 @@ export const UserCard = ({User,close}) => {
                 </Link>
                 <small className="text-gray-dark">@{User?.username}</small>
             </div>
-            <button className='text-sm self-start py-0.5 text-primary-dark ml-auto hover:text-pista-dark'
-            onClick={()=>followUnfollowHandler(User?._id)} >
-                {isFollowing ? 'unfollow' : 'follow'}
-            </button>
+            <div className='ml-auto self-center'>
+                <button className='text-sm py-0.5 px-1 border-[1.2px] border-r-primary rounded text-primary-dark  hover:bg-primary-dark hover:text-white'
+                onClick={()=>dispatch(followUser({token,userId:User?._id}))} >
+                    Follow
+                </button>
+            </div>
         </div>
     </div>
   )
