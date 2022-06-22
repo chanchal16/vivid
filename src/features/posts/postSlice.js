@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, } from '@reduxjs/toolkit'
 import axios from 'axios';
+import { followUser, unFollowUser } from 'features/profile/profileSlice';
 import { toast } from "react-toastify";
 
 const initialState = {
@@ -10,7 +11,8 @@ const initialState = {
   selectedPost:null,
   isEditModeOn:false,
   sortPostType:'',
-  feedStatus:'Idle'
+  feedStatus:'Idle',
+  userFollowing:{}
 }
 // get all posts
 export const getPosts = createAsyncThunk("posts/getPosts", async () => {
@@ -302,6 +304,12 @@ export const postSlice = createSlice({
       .addCase(removeComment.rejected,(state,action)=>{
         state.status = 'Rejected';
         console.log(action.error.message)
+      })
+      .addCase(followUser.fulfilled,(state,action)=>{
+        state.userFollowing = action.payload.user
+      })
+      .addCase(unFollowUser.fulfilled,(state,action)=>{
+        state.userFollowing = action.payload.user
       })
     }
   })

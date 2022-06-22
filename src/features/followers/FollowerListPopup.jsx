@@ -14,7 +14,7 @@ export const FollowerListPopup = ({ followerPopupData, closePopup }) => {
             {
                 followerPopupData.listOfProfiles.map(profile => {
                     return (
-                        <li key={profile._id} className="my-2 border border-light  shadow-sm p-1">
+                        <li key={profile.username} className="my-2 border border-light  shadow-sm p-1">
                             {
                                 followerPopupData.listType === "Followers" ?                               
                                 <div className="flex gap-x-2 justify-between items-center">
