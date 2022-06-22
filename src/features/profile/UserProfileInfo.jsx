@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaBirthdayCake, FaMapMarkerAlt} from 'react-icons/fa';
+import { FaBirthdayCake} from 'react-icons/fa';
 import { useSelector,useDispatch } from 'react-redux';
 import { followUser, unFollowUser } from './profileSlice';
 import { useParams} from "react-router-dom";
@@ -10,7 +10,7 @@ export const UserProfileInfo = ({userData}) => {
     const {username} = useParams();
     const dispatch = useDispatch()
     // check if following 
-    const isFollowing = userData?.followers.some(user=>user.username !== username)
+    const isFollowing = userData?.followers.some(user=>user.username !== username)   
 
     const followUnfollowHandler = ()=>{
         if(isFollowing){
