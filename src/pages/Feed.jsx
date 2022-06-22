@@ -9,9 +9,9 @@ const SuggestedUsers = React.lazy(()=>import('features/profile/SuggestedUsers'))
 
 export const Feed = ({setShowEmojiContainer}) => {
   const {user} = useSelector(state=>state.auth);
-  const {sortPostType,allPosts,feedStatus} = useSelector(state => state.post);
+  const {sortPostType,allPosts,feedStatus,userFollowing} = useSelector(state => state.post);
   const dispatch = useDispatch() 
-  const userFeed = getUserFeed(allPosts,user?.user?.following,user?.user?.username).slice().reverse()
+  const userFeed = getUserFeed(allPosts,userFollowing?.following,user?.user?.username).slice().reverse()
   const sortedPosts = sortPosts(userFeed,sortPostType)
   const mountedRef = useRef(true)
 
