@@ -46,6 +46,12 @@ main{
 .default{
     border-color: #e2e8f0;
 }
+/* tagline container */
+@media screen and (max-width:767px) {
+    .tag-container{
+        min-height: 20rem;
+    }
+}
 /* inputs */
 input, textarea{
     border-radius: 0.5rem;
