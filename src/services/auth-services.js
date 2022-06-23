@@ -5,7 +5,7 @@ const LoginUser = async(email,password)=>{
 }
 
 // signup user
-const SignupUser = async(name,email,password)=>{
-    return await axios.post("api/auth/signup",{name,email,password})
+const SignupUser = async(name,username,email,password)=>{
+    return await axios.post("api/auth/signup",{name,username,email,password})
 }
 export{LoginUser,SignupUser}

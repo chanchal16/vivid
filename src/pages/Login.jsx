@@ -47,22 +47,25 @@ export const Login = () => {
         return <Navigate to={from || "/"} replace />;
     }
   return (
-    <div className="container px-1 my-12">
-        <div className='text-center p-4'>
-            <span className='font-oleo text-xl'>share your vivid thoughts and feelings via  <span className='text-primary-dark'>Vivid</span></span>
+    <div className="flex flex-col  justify-center  px-1 mb-12 md:flex-row my-12">
+        <div className='tag-container text-center p-6 min max-w-sm bg-[#ecf7e9] flex flex-col md:w-auto'>
+            <div className='m-auto'>
+            <h4 className='font-oleo text-pista-dark text-6xl'>Vivid</h4>
+            <span className='font-oleo text-xl'>share your vivid thoughts and feelings via  <span className='text-pista-dark'>Vivid</span></span>
+            </div>
         </div>
-        <form className='max-w-sm  mx-auto px-2 py-6  bg-white  rounded-md flex flex-col
-         justify-center items-center gap-4' onSubmit={ handleSubmit}>
+        <form className='max-w-sm px-2 py-6  bg-white  rounded-md flex flex-col
+         justify-center items-center gap-4 md:w-96' onSubmit={ handleSubmit}>
             <h1 className="text-3xl text-primary font-oleo">Log In</h1>         
             <div className="flex flex-col text-sm text-gray w-10/12 ">
                 <label className='font-oleo'>Email</label>
                 <input type="email" placeholder="abc@gmail.com" className="p-2 outline outline-1" value={loginForm.email}
-                onChange={(e)=>setLoginForm((form)=>({...form,email:e.target.value}))} />
+                onChange={(e)=>setLoginForm((form)=>({...form,email:e.target.value}))} required />
             </div>
             <div className="flex flex-col text-sm text-gray w-10/12 ">
                 <label className='font-oleo'>Password</label>
                 <input type="password" className="p-2 outline outline-1" value={loginForm.password}
-                onChange={(e)=>setLoginForm((form)=>({...form,password:e.target.value}))} />
+                onChange={(e)=>setLoginForm((form)=>({...form,password:e.target.value}))} required />
             </div>
             <button type='submit' className="p-1.5 w-10/12  rounded border-none bg-primary hover:bg-primary-dark">Login</button>
             <button className="p-1.5 w-10/12  rounded border-none bg-pista hover:bg-pista-dark" onClick={()=>HandleLogin()}>Guest Login</button>
