@@ -70,16 +70,17 @@ export const Feed = ({setShowEmojiContainer}) => {
                 <ImSpinner8 className="loading-icon text-primary-dark text-3xl" />
               </div>
               :
-              <div>
+              <div className=''>
                 {
-                  sortPosts.length > 0 ?
+                  sortedPosts.length > 0 ?
                     sortedPosts?.map(post=>(
                         <PostCard post={post} key={post?._id}/>
                     ))
                   :
-                  <p className="rounded py-4 px-2 mb-6 text-center text-xs text-gray border border-gray">
+                  <div className='p-8'>
+                  <p className="rounded py-4 px-2 mb-6 text-center text-sm text-gray border border-gray">
                     Your posts and the posts of people you follow will appear here.
-                  </p>
+                  </p></div>
                 }
               </div>
             }           
