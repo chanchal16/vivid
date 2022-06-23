@@ -51,15 +51,18 @@ export const PostCard = ({post}) => {
   return (
     <article className='bg-white rounded border-1 mx-2 md:mx-0 m-5'>
         <div className="flex items-center px-4 py-2">
-            <img
-            className="w-12 h-12 rounded-full"
-            src={ currUserProfile?.avatarUrl || post.avatarUrl }
-            alt={post.username}
-            />
+            <Link to={`/profile/${post.username}`}>
+                <img
+                className="w-12 h-12 rounded-full"
+                src={ currUserProfile?.avatarUrl || post.avatarUrl }
+                alt={post.username}
+                />
+            </Link>
             <div className='flex flex-col'>
+                <Link to={`/profile/${post.username}`} className='hover:text-primary-dark'> 
                 <span className="px-4 text-lg">
                     {post?.username}
-                </span>
+                </span></Link>
                 <p className="inline-block text-xs ml-4 text-gray">
                 {dayjs(post.updatedAt).fromNow()}
                 </p>
