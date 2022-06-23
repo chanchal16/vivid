@@ -151,13 +151,6 @@ export const EditProfile = () => {
                 </form>
             </div>
         }
-
-        {
-            profileStatus === "Loading" && 
-            <div className="flex w-full h-full items-center justify-center">
-                <ImSpinner8 className="loading-icon text-4xl text-gray-400" />
-            </div>
-        }
         {
             profileStatus === "Rejected" && 
             <p>something went wrong</p>
