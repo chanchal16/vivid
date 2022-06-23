@@ -83,7 +83,7 @@ const PostModal = ({showEmojiContainer,setShowEmojiContainer}) => {
                 <div className='flex'>
                   <label className="post-btn-upload flex items-center cursor-pointer" >
                       <MdPhoto className="text-3xl text-gray-dark hover:text-primary" title={"Upload Image"} />
-                      <input type="file" name="postImage" id="post-image" className="hidden" onChange={uploadImage} />
+                      <input type="file" accept="image/*" name="postImage" id="post-image" className="hidden" onChange={uploadImage} />
                           <small className="text-gray-400 text-xs">{postImg.original_filename?.length > 20 ? postImg?.original_filename.substring(0,20)+"...": postImg?.original_filename}</small>
                   </label>
                   <span className='px-3 cursor-pointer' onClick={()=>setShowEmojiContainer(prev=>!prev)}>
