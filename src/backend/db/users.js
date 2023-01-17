@@ -10,7 +10,7 @@ export const users = [
     _id: uuid(),
     name: "Tester",
     username:'tester',
-    avatarUrl:'https://joeschmoe.io/api/v1/jon',
+    avatarUrl:'https://img.freepik.com/free-vector/3d-cartoon-young-woman-smiling-circle-frame-character-illustration-vector-design_40876-3100.jpg?w=740&t=st=1673943325~exp=1673943925~hmac=e5444c0fda83c83dad7d12124b719793be9d58562cfa40ca3347667f70900682',
     email: "testing@test.com",
     password: "test123",
     bio:'This is a guest account, anyone can use it.',
